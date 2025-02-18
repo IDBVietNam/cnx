@@ -53,3 +53,16 @@ Alpine.js provides a lightweight framework for adding interactivity to your HTML
     <div x-show="open">This is a toggleable content.</div>
 </div>
 ```
+
+## Coding Conventions
+This project follows the snake_case style for naming variables and functions. This means that all variable and function names should be written in lowercase letters, with words separated by underscores. For example:
+```sh
+# Good
+def my_function():
+    my_variable = 10
+
+# Bad
+def myFunction():
+    myVariable = 10
+```
+By adhering to this convention, we ensure consistency and readability throughout the codebase.
