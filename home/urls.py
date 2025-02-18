@@ -1,15 +1,14 @@
 from django.urls import path
-from .views import (
-    address_info_form,
-    contact_info_form,
+from home.views.base_views import index
+from home.views.form_views import (
     customer_info_form,
-    index,
-    manage_telesales_campaign,
+    contact_info_form,
+    address_info_form,
     payment_info_form,
-    phone_info_form,
     product_info_form,
+    phone_info_form,
 )
-
+from home.views.campaign_views import manage_telesales_campaign
 app_name = 'home'
 
 urlpatterns= [

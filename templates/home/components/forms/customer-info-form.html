@@ -1,27 +1,25 @@
 {% include "./form-title.html" with title="Customer Information" %}
 
-<form>
+<form method="post">
     {% csrf_token %}
-    <div 
-    style="padding-right: 2rem;padding-left: 2rem;"
-    class="row mt-3">
+    <div class="row mt-3" style="padding-right: 2rem; padding-left: 2rem;">
         <!-- Left Column -->
-        <div class="col-md-6">
-            <div class="form-group mb-5 d-flex">
-                <label style="width: 250px;">Giới tính</label>
-                <select class="form-control" id="gender" name="{{ form.gender.name }}">
-                    <option {% if form.gender.value == 'Male' %}selected{% endif %}>Male</option>
-                    <option {% if form.gender.value == 'Female' %}selected{% endif %}>Female</option>
-                    <option {% if form.gender.value == 'Other' %}selected{% endif %}>Other</option>
-                </select>
-            </div>
+        <div class="">
+            {% include "../fields/dynamic-select.html" with label="Giới tính" field=form.gender options=gender_options only %}
+            {% include "../fields/text-input.html" with field=form.id_number only %}
+            {% include "../fields/text-input.html" with field=form.family_relation only %}
+            {% include "../fields/text-input.html" with field=form.agency only %}
+            {% include "../fields/text-input.html" with field=form.contract_number only %}
         </div>
 
         <!-- Right Column -->
-        <div class="col-md-6">
+        <div class="">
+            {% include "../fields/text-input.html" with field=form.company_name only %}
+            {% include "../fields/text-input.html" with field=form.company_address only %}
+            {% include "../fields/text-input.html" with field=form.company_district only %}
+            {% include "../fields/text-input.html" with field=form.company_province only %}
+            {% include "../fields/text-input.html" with field=form.group only %}
         </div>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
 </form>
-
-
