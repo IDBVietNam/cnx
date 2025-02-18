@@ -17,6 +17,7 @@
 #     def __str__(self):
 #         return self.name
 
+
 # temporary class to simulate the model
 class CustomerInfo:
     def __init__(

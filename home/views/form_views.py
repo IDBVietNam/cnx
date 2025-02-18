@@ -1,24 +1,48 @@
-from django.shortcuts import render
-from django.contrib import messages
 from django.http import HttpRequest, HttpResponse
+from django.shortcuts import render
 
-from home.forms.customer_info_form import CustomerInfoForm
 from home.models.customer_info import CustomerInfo
 
+
 def contact_info_form(request: HttpRequest) -> HttpResponse:
-    return render(request, "home/components/forms/contact-info-form.html", {"active_tab": "contact-info"})
+    return render(
+        request,
+        "home/components/forms/contact-info-form.html",
+        {"active_tab": "contact-info"},
+    )
+
 
 def address_info_form(request: HttpRequest) -> HttpResponse:
-    return render(request, "home/components/forms/address-info-form.html", {"active_tab": "address-info"})
+    return render(
+        request,
+        "home/components/forms/address-info-form.html",
+        {"active_tab": "address-info"},
+    )
+
 
 def payment_info_form(request: HttpRequest) -> HttpResponse:
-    return render(request, "home/components/forms/payment-info-form.html", {"active_tab": "payment-info"})
+    return render(
+        request,
+        "home/components/forms/payment-info-form.html",
+        {"active_tab": "payment-info"},
+    )
+
 
 def product_info_form(request: HttpRequest) -> HttpResponse:
-    return render(request, "home/components/forms/product-info-form.html", {"active_tab": "product-info"})
+    return render(
+        request,
+        "home/components/forms/product-info-form.html",
+        {"active_tab": "product-info"},
+    )
+
 
 def phone_info_form(request: HttpRequest) -> HttpResponse:
-    return render(request, "home/components/forms/phone-info-form.html", {"active_tab": "phone-info"})
+    return render(
+        request,
+        "home/components/forms/phone-info-form.html",
+        {"active_tab": "phone-info"},
+    )
+
 
 def customer_info_form(request: HttpRequest) -> HttpResponse:
     context = {
@@ -26,6 +50,7 @@ def customer_info_form(request: HttpRequest) -> HttpResponse:
         "active_tab": "customer-info",
     }
     return render(request, "home/components/forms/customer-info-form.html", context)
+
 
 def init_customer_info_data() -> CustomerInfo:
     return CustomerInfo(
@@ -40,5 +65,5 @@ def init_customer_info_data() -> CustomerInfo:
         company_address="123 Innovation Drive",
         company_district="Central Business District",
         company_province="California",
-        group="R&D"
+        group="R&D",
     )

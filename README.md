@@ -66,3 +66,17 @@ def myFunction():
     myVariable = 10
 ```
 By adhering to this convention, we ensure consistency and readability throughout the codebase.
+
+## Installing Pre-commit Hooks
+
+To maintain code quality and consistency, we use pre-commit hooks. Follow these steps to install and set up pre-commit hooks for this project:
+
+1. Install `pre-commit`:
+
+```sh
+pip install pre-commit
+```
+2. Install the pre-commit hooks:
+```sh
+pre-commit install
+```
