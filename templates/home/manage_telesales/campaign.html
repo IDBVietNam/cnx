@@ -2,31 +2,36 @@
 {% load static %}
 <script defer src="{% static 'alpinejs/min.js' %}"></script>
 <h2>Conx</h2>
-<div class="d-flex flex-wrap">
-  <div style="max-width: 50%;" class="p-2 m-2 border" id="leftTab">
+<div class="row g-5 d-flex">
+    <div style="max-width: 48%; min-width: 400px" class="p-2 m-2 border" id="leftTab">
         <div class="p-2 border primary_background_color d-flex item-center">
-        <span class="lh-sm fw-semibold fs-6">THÔNG TIN KHÁCH HÀNG</span>
+            <span class="lh-sm fw-semibold fs-6">THÔNG TIN KHÁCH HÀNG</span>
         </div>
         <div id="messages-container">
         </div>
-            <ul class="d-flex list-inline fs-6 p-2 pb-0 border-bottom text-center" x-data="{ activeTab: '{{ tabs.0.id }}' }">
-                {% for tab in tabs %}
-                    {% include "home/components/partials/tab-bar-item.html" %}
-                {% endfor %}
-            </ul> 
+        <ul class="d-flex list-inline fs-6 p-2 pb-0 border-bottom text-center" x-data="{ activeTab: '{{ tabs.0.id }}' }">
+            {% for tab in tabs %}
+                {% include "home/components/partials/tab-bar-item.html" with target_id="#left-tab-content"%}
+            {% endfor %}
+        </ul>
         <div class="p-2" id="left-tab-content">
 
         </div>
-        </div>
-  </div>
-  <div style="max-width: 50%;" x-data class="p-2 m-2 border" id="rightTab">
-    <div class="p-2 border primary_background_color d-flex item-center">
-      <span class="lh-sm fw-semibold fs-5">Section</span>
     </div>
-    <div id="messages-container-right">
+    <div style="max-width: 48%; min-width: 400px" x-data class="p-2 m-2 border" id="rightTab">
+        <div class="p-2 border primary_background_color d-flex item-center">
+            <span class="lh-sm fw-semibold fs-5">Section</span>
+        </div>
+        <div id="messages-container-right">
+        </div>
+        <ul class="d-flex list-inline fs-6 p-2 pb-0 border-bottom text-center" x-data="{ activeTab: '{{ tabs.0.id }}' }">
+            {% for tab in tabs %}
+                {% include "home/components/partials/tab-bar-item.html" with target_id="#right-tab-content" %}
+            {% endfor %}
+        </ul>
+        <div class="p-2" id="right-tab-content">
+        </div>
     </div>
 
-    <div class="p-2" id="right-tab-content">
-  </div>
 </div>
 </div>

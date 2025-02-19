@@ -1,6 +1,7 @@
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
+from home.forms.customer_info_form import CustomerInfoForm
 from home.models.customer_info import CustomerInfo
 
 
@@ -45,10 +46,24 @@ def phone_info_form(request: HttpRequest) -> HttpResponse:
 
 
 def customer_info_form(request: HttpRequest) -> HttpResponse:
+    if request.method == "POST":
+        form = CustomerInfoForm(request.POST)
+        if form.is_valid():
+            form.save(commit=False)  # Create instance without saving
+            # Perform additional logic here if needed
+    else:
+        form = CustomerInfoForm()  # Initialize an empty form
+
     context = {
-        "form": "",
+        "form": form,
         "active_tab": "customer-info",
+        "gender_options": [
+            {"value": "Male", "label": "Nam"},
+            {"value": "Female", "label": "Nữ"},
+            {"value": "Other", "label": "Khác"},
+        ],
     }
+
     return render(request, "home/components/forms/customer-info-form.html", context)
 
 

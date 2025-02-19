@@ -2,7 +2,7 @@
     style="width: 250px; font-size: small"
     class="tab text-center align-middle p-2"
     hx-get="{% url tab.url %}"
-    hx-target="#left-tab-content"
+    hx-target="{{ target_id }}"
     hx-swap="innerHTML"
     hx-trigger="click"
     id="{{ tab.id }}"
