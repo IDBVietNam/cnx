@@ -1,8 +1,8 @@
-<div class="form-group mb-5 d-flex">
-    <label style="width: 250px;">{{ label }}</label>
-    <select class="form-control" id="{{ field.id_for_label }}" name="{{ field.name }}">
+<div class="form-floating mb-5">
+    <select  id="{{ field.id_for_label }}" name="{{ field.name }}" class="form-select">
         {% for option in options %}
-            <option value="{{ option.value }}" {% if option.value == field.value %}selected{% endif %}>{{ option.display }}</option>
+            <option value="{{ option.value }}" {% if option.value == field.value %}selected{% endif %}>{{ option.label }}</option>
         {% endfor %}
     </select>
+    <label for="{{ field.id_for_label }}">{{ label }}</label>
 </div>

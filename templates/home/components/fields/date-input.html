@@ -1,0 +1,28 @@
+{% load static %}
+
+<div class="flatpickr-input-container mb-5">
+    <div class="form-floating">
+        <input
+            class="form-control datetimepicker"
+            id="floatingEventInput_{{ field.name }}"
+            type="text"
+            name="{{ field.name }}"
+            value="{{ field.value|default:'' }}"
+            data-options='{"disableMobile":true,"dateFormat":"d/m/Y"}'      placeholder="{{ field.placeholder|default:'' }}"
+            {% if field.required %}required{% endif %} />
+        <label class="ps-6" for="floatingEventInput_{{ field.name }}">
+            <span class="uil uil-calendar-alt flatpickr-icon text-body-tertiary"></span>
+            {{ field.label }}
+            {% if field.required %}<span class="text-danger">*</span>{% endif %}
+        </label>
+
+    </div>
+</div>
+
+<script>
+    flatpickr("#floatingEventInput_{{ field.name }}", {
+        disableMobile: true,
+        dateFormat: "d/m/Y"
+    });
+
+</script>
