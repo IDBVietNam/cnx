@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate, login
 from django.http import JsonResponse
 from django.views import View
 
+
 class LoginView(View):
     def post(self, request):
         c_username = request.POST.get("c_username")

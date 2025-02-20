@@ -26,8 +26,7 @@ SECRET_KEY = "django-insecure-xknz*i&9vq(#!m$@3guuz30lzgz6!$d@ly@%s2!-#&+rvo33*a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['0.0.0.0', 'localhost', '127.0.0.1']
-
+ALLOWED_HOSTS = ["0.0.0.0", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -41,7 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "phoenix_example",
     "home",
-    "user"
+    "user",
 ]
 
 MIDDLEWARE = [
@@ -132,5 +131,3 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
-
-

@@ -1,10 +1,12 @@
 import json
+
+from django.contrib.auth import get_user_model
+from django.contrib.auth.mixins import LoginRequiredMixin
 from django.http import JsonResponse
 from django.views import View
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.contrib.auth import get_user_model
 
 User = get_user_model()
+
 
 class UpdateProfileView(LoginRequiredMixin, View):
     def put(self, request):
@@ -19,9 +21,14 @@ class UpdateProfileView(LoginRequiredMixin, View):
 
             # Validate input
             if not any([c_firstName, c_lastName, c_email]):
-                return JsonResponse({"error": "At least one field is required"}, status=400)
+                return JsonResponse(
+                    {"error": "At least one field is required"}, status=400
+                )
 
-            if c_email and User.objects.filter(c_email=c_email).exclude(id=user.id).exists():
+            if (
+                c_email
+                and User.objects.filter(c_email=c_email).exclude(id=user.id).exists()
+            ):
                 return JsonResponse({"error": "Email is already in use"}, status=400)
 
             # Update the user profile

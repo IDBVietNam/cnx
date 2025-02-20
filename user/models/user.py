@@ -1,5 +1,10 @@
-from django.contrib.auth.models import AbstractBaseUser, BaseUserManager, PermissionsMixin
+from django.contrib.auth.models import (
+    AbstractBaseUser,
+    BaseUserManager,
+    PermissionsMixin,
+)
 from django.db import models
+
 
 class CustomUserManager(BaseUserManager):
     def create_user(self, c_username, c_email, c_password=None, **extra_fields):
@@ -18,6 +23,7 @@ class CustomUserManager(BaseUserManager):
         extra_fields.setdefault("is_staff", True)
         extra_fields.setdefault("is_superuser", True)
         return self.create_user(c_username, c_email, c_password, **extra_fields)
+
 
 class CustomUser(AbstractBaseUser, PermissionsMixin):
     c_username = models.CharField(max_length=150, unique=True)
