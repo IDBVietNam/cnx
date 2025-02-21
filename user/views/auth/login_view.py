@@ -1,14 +1,17 @@
 from django.contrib.auth import authenticate, login
-from django.http import JsonResponse
-from django.views import View
+from django.shortcuts import redirect, render
 
 
-class LoginView(View):
-    def post(self, request):
+def user_login(request):
+    if request.method == "POST":
         username = request.POST.get("username")
         password = request.POST.get("password")
         user = authenticate(request, username=username, password=password)
-        if user:
+
+        if user is not None:
             login(request, user)
-            return JsonResponse({"message": "Login successful"}, status=200)
-        return JsonResponse({"error": "Invalid credentials"}, status=400)
+            return redirect("/home/index")  # Redirect on success
+        else:
+            return render(request, "home/login.html", {"error": "Invalid credentials"})
+
+    return render(request, "user/login.html")

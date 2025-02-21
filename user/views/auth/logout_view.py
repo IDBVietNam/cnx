@@ -1,9 +1,10 @@
 from django.contrib.auth import logout
-from django.http import JsonResponse
+from django.shortcuts import redirect
 from django.views import View
 
 
 class LogoutView(View):
-    def post(self, request):
-        logout(request)  # Clear session
-        return JsonResponse({"message": "Logged out successfully"}, status=200)
+    def get(self, request):
+        print("logout ne`!")
+        logout(request)
+        return redirect("login")  # Ensure 'login' is the name of your login URL pattern
