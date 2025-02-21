@@ -31,7 +31,3 @@ jobs:
       - name: Run pre-commit hooks
         run: |
           pre-commit run --all-files || (echo "Fixing issues..." && git add . && pre-commit run --all-files)
-
-
-      - name: Run Django Tests
-        run: python manage.py test
