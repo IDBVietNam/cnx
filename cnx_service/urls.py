@@ -23,4 +23,5 @@ urlpatterns = [
     path("phoenix_example/", include("phoenix_example.urls")),
     path("home/", include("home.urls")),
     path("user/", include("user.urls")),
+    path("activities/", include("activities.urls")),
 ]

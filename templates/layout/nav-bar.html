@@ -68,7 +68,10 @@
                     <div class="nav-item-wrapper">
                         <a
                             class="nav-link label-1"
-                            href="#"
+                            hx-get="{% url 'activities:activities_form' %}"
+                            hx-target="#nav-content"
+                            hx-swap="innerHTML"
+                            hx-trigger="click"
                             role="button"
                             data-bs-toggle=""
                             aria-expanded="false"

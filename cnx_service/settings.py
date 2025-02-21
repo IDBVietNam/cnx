@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "phoenix_example",
     "home",
     "user",
+    "activities",
 ]
 
 MIDDLEWARE = [

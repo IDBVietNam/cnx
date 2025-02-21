@@ -67,3 +67,17 @@ pip install pre-commit
 ```sh
 pre-commit install
 ```
+
+## Deployment
+
+### Dev environment
+
+#### Steps:
+
+1. After a PR is merged into `main`, a GitHub Action will be triggered.
+2. The GitHub Action workflow will build a new image from the latest code.
+3. After that, it will push the new image to DockerHub.
+4. Then, it will connect to the server and pull the new image from DockerHub.
+5. Finally, it will stop the service, clear the old image, and run the server with the new image.
+
+![flowchart](deployment_flow.png)
