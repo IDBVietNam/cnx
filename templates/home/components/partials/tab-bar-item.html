@@ -6,8 +6,15 @@
     hx-swap="innerHTML"
     hx-trigger="click"
     id="{{ tab.id }}"
-    :class="{'active_tab': activeTab === '{{ tab.id }}' }"
-    @click="activeTab = '{{ tab.id }}'"
+    :class="{'active_tab': activeTab === '{{ tab.id|escapejs }}' }"
+    @click="activeTab = '{{ tab.id|escapejs }}'"
+    x-init="$nextTick(() => {
+            setTimeout(() => {
+            if (activeTab === '{{ tab.id|escapejs }}') {
+            $el.click();
+            }
+            }, 200); // Delay before clicking
+            })"
 >
     {{ tab.label }}
 </li>

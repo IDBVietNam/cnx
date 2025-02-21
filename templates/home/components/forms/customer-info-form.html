@@ -1,6 +1,7 @@
-{% include "./form-title.html" with title="Customer Information" %}
+{% load static %}
 
-<form method="post">
+<form hx-post="{% url 'home:customer-info-form' %}">
+    {% include "./form-title.html" with title="Customer Information" %}
     {% csrf_token %}
     <div class="d-flex mt-3 wrap p-2" style="gap: 10px;">
         <!-- Left Column -->
@@ -8,6 +9,7 @@
             {% include "../fields/text-input.html"  with field=form.name %}
             {% include "../fields/dynamic-select.html" with label="Giới tính" field=form.gender options=gender_options only %}
             {% include "../fields/text-input.html" with field=form.id_number only %}
+            {% include "../fields/date-input.html" with field=form.day_of_birth only %}
             {% include "../fields/text-input.html" with field=form.family_relation only %}
             {% include "../fields/text-input.html" with field=form.agency only %}
             {% include "../fields/text-input.html" with field=form.contract_number only %}

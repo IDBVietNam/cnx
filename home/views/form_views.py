@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
@@ -48,6 +49,8 @@ def phone_info_form(request: HttpRequest) -> HttpResponse:
 def customer_info_form(request: HttpRequest) -> HttpResponse:
     if request.method == "POST":
         form = CustomerInfoForm(request.POST)
+        messages.error(request, "Validation error")
+
         if form.is_valid():
             form.save(commit=False)  # Create instance without saving
             # Perform additional logic here if needed
