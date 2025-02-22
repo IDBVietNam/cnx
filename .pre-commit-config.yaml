@@ -30,3 +30,11 @@ repos:
     rev: v0.4.0
     hooks:
     -   id: check-absent-migrations
+  - repo: local
+    hooks:
+      - id: check-print-statements
+        name: Check for print statements
+        entry: ./pre-commit/check_print_statements.py
+        language: system
+        types: [python]
+        exclude: "pre-commit/"
