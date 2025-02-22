@@ -5,7 +5,7 @@ import sys
 
 def check_for_print_statements(files):
     """Checks if the given files contain print statements."""
-    print_usage_pattern = re.compile(r"^\s*print\(")  # Matches print statements
+    print_usage_pattern = re.compile(r"^\s*print\(")
 
     has_print = False
     for file in files:
@@ -22,7 +22,7 @@ def check_for_print_statements(files):
 
 
 if __name__ == "__main__":
-    files_to_check = sys.argv[1:]  # Files passed by pre-commit
+    files_to_check = sys.argv[1:]
     if check_for_print_statements(files_to_check):
         print("Commit rejected! Remove print statements before committing.")
         sys.exit(1)
