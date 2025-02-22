@@ -39,9 +39,12 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "phoenix_example",
+    # apps
     "home",
     "activities",
     "base",
+    # 3rd party
+    "django_filters",
 ]
 
 MIDDLEWARE = [
