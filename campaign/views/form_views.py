@@ -10,14 +10,6 @@ def address_info_form(request: HttpRequest) -> HttpResponse:
     )
 
 
-def product_info_form(request: HttpRequest) -> HttpResponse:
-    return render(
-        request,
-        "home/components/forms/product-info-form.html",
-        {"active_tab": "product-info"},
-    )
-
-
 def phone_info_form(request: HttpRequest) -> HttpResponse:
     return render(
         request,
