@@ -10,7 +10,9 @@ class CustomerInfoForm(forms.ModelForm):
         label="Ngày sinh", required=False, input_formats=["%d/%m/%Y"]
     )
     gender = forms.CharField(label="Giới tính", required=False)
-    family_relation = forms.CharField(label="Quan hệ gia đình", max_length=255, required=False)
+    family_relation = forms.CharField(
+        label="Quan hệ gia đình", max_length=255, required=False
+    )
     contract_number = forms.CharField(label="Số hợp đồng", required=False)
     company_name = forms.CharField(label="Tên công ty", required=False)
     company_address = forms.CharField(label="Địa chỉ công ty", required=False)

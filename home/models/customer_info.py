@@ -1,7 +1,9 @@
 from django.db import models
 
+from cnx_service.model import BaseModel
 
-class CustomerInfo(models.Model):
+
+class CustomerInfo(BaseModel):
     name = models.CharField(max_length=255)
     gender = models.CharField(max_length=50)
     id_number = models.CharField(max_length=20, unique=True)
@@ -14,7 +16,9 @@ class CustomerInfo(models.Model):
     company_district = models.CharField(max_length=255, blank=True, null=True)
     company_province = models.CharField(max_length=255, blank=True, null=True)
     group = models.CharField(max_length=100, blank=True, null=True)
-    created_date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        db_table = "customer_info"  # Explicitly setting the table name
 
     def __str__(self):
         return self.name

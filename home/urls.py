@@ -2,10 +2,10 @@ from django.urls import path
 
 from home.views.base_views import index
 from home.views.campaign_views import manage_telesales_campaign
+from home.views.contact_info_form import contact_info_form
+from home.views.cutomer_info_form import customer_info_form
 from home.views.form_views import (
     address_info_form,
-    contact_info_form,
-    customer_info_form,
     payment_info_form,
     phone_info_form,
     product_info_form,
