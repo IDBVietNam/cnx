@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
-from home.forms.payment_info_form import PaymentInfoForm
+from campaign.forms.payment_info_form import PaymentInfoForm
 
 
 def payment_info_form(request: HttpRequest) -> HttpResponse:

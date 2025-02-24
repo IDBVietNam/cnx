@@ -1,6 +1,6 @@
 from django import forms
 
-from home.models.contact_info import ContactInfo
+from campaign.models.contact_info import ContactInfo
 
 
 class ContactInfoForm(forms.ModelForm):

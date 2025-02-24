@@ -1,6 +1,6 @@
 from django import forms
 
-from home.models.payment_info import PaymentInfo
+from campaign.models.payment_info import PaymentInfo
 
 
 class PaymentInfoForm(forms.ModelForm):

@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     "home",
     "activities",
     "base",
+    "campaign",
 ]
 
 MIDDLEWARE = [

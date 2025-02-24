@@ -1,6 +1,6 @@
 {% load static %}
 
-<form class="needs-validation" hx-post="{% url 'home:customer-info-form' %}">
+<form class="needs-validation" hx-post="{% url 'campaign:customer-info-form' %}">
     {% include "./form-title.html" with title="Customer Information" %}
     {% csrf_token %}
     <div class="d-flex mt-3 wrap p-2" style="gap: 10px;">

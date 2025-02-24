@@ -2,7 +2,7 @@ from django.contrib import messages
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import render
 
-from home.forms.contact_info_form import ContactInfoForm
+from campaign.forms.contact_info_form import ContactInfoForm
 
 
 def contact_info_form(request: HttpRequest) -> HttpResponse:

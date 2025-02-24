@@ -1,5 +1,5 @@
 
-<form class="needs-validation" hx-post="{% url 'home:payment-info-form' %}">
+<form class="needs-validation" hx-post="{% url 'campaign:payment-info-form' %}">
     {% include "./form-title.html" with title="Payment Information" %}
     {% csrf_token %}
     <div
