@@ -7,29 +7,29 @@ def manage_telesales_campaign(request: HttpRequest) -> HttpResponse:
         {
             "id": "customer-info",
             "label": "Customer Info",
-            "url": "home:customer-info-form",
+            "url": "campaign:customer-info-form",
         },
         {
             "id": "contact-info",
             "label": "Contact Info",
-            "url": "home:contact-info-form",
+            "url": "campaign:contact-info-form",
         },
         {
             "id": "payment-info",
             "label": "Payment Info",
-            "url": "home:payment-info-form",
+            "url": "campaign:payment-info-form",
         },
         {
             "id": "product-info",
             "label": "Product Info",
-            "url": "home:product-info-form",
+            "url": "campaign:product-info-form",
         },
         {
             "id": "address-info",
             "label": "Address Info",
-            "url": "home:address-info-form",
+            "url": "campaign:address-info-form",
         },
-        {"id": "phone-info", "label": "Phone Info", "url": "home:phone-info-form"},
+        {"id": "phone-info", "label": "Phone Info", "url": "campaign:phone-info-form"},
     ]
     return render(
         request,

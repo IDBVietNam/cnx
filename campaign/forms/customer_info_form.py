@@ -1,6 +1,6 @@
 from django import forms
 
-from home.models.customer_info import CustomerInfo
+from campaign.models.customer_info import CustomerInfo
 
 
 class CustomerInfoForm(forms.ModelForm):

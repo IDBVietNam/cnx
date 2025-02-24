@@ -10,14 +10,6 @@ def address_info_form(request: HttpRequest) -> HttpResponse:
     )
 
 
-def payment_info_form(request: HttpRequest) -> HttpResponse:
-    return render(
-        request,
-        "home/components/forms/payment-info-form.html",
-        {"active_tab": "payment-info"},
-    )
-
-
 def product_info_form(request: HttpRequest) -> HttpResponse:
     return render(
         request,
