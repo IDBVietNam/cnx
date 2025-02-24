@@ -10,7 +10,7 @@ def contact_info_form(request: HttpRequest) -> HttpResponse:
         form = ContactInfoForm(request.POST)
 
         if form.is_valid():
-            form.save(commit=False)
+            form.save()
         else:
             for field, errors in form.errors.items():
                 for error in errors:

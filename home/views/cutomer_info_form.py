@@ -10,8 +10,7 @@ def customer_info_form(request: HttpRequest) -> HttpResponse:
         form = CustomerInfoForm(request.POST)
 
         if form.is_valid():
-            form.save(commit=False)  # Create instance without saving
-            # Perform additional logic here if needed
+            form.save()
         else:
             for field, errors in form.errors.items():
                 for error in errors:
