@@ -1,7 +1,9 @@
 from django.db import models
 
+from cnx_service.model import BaseModel
 
-class ProductInfo(models.Model):
+
+class ProductInfo(BaseModel):
     product = models.CharField(max_length=300)
 
     class Meta:
