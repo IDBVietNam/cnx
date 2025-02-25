@@ -7,6 +7,8 @@
             <th class="sort border-top border-translucent ps-3" data-sort="name">Tên nguồn gọi</th>
             <th class="sort border-top" data-sort="email">Tổng KH</th>
             <th class="sort border-top" data-sort="age">Tạo bởi</th>
+            <th class="border-top">Chỉnh sửa</th> <!-- Cột riêng cho Edit -->
+            <th class="border-top">Xem</th> <!-- Cột riêng cho View -->
         </tr>
     </thead>
     <tbody>
@@ -18,6 +20,12 @@
                 <td class="name">{{ callsource.name_call_source }}</td>
                 <td class="email">{{ callsource.total_customers }}</td>
                 <td class="age">{{ callsource.create_by }}</td>
+                <td>
+                    <a href="{}" class="text-primary text-decoration-none">Edit</a>
+                </td>
+                <td>
+                    <a href="{}" class="text-primary text-decoration-none">View</a>
+                </td>
             </tr>
         {% empty %}
             <tr>
@@ -26,36 +34,3 @@
         {% endfor %}
     </tbody>
 </table>
-
-<script>
-    document.addEventListener("DOMContentLoaded", function () {
-        function updateCheckboxHandlers() {
-            const selectAllCheckbox = document.getElementById("select-all");
-            const rowCheckboxes = document.querySelectorAll(".row-checkbox");
-
-            // Khi click vào "Chọn tất cả"
-            selectAllCheckbox.addEventListener("change", function () {
-                rowCheckboxes.forEach(checkbox => {
-                    checkbox.checked = selectAllCheckbox.checked;
-                });
-            });
-
-            // Khi chọn hoặc bỏ chọn từng hàng
-            rowCheckboxes.forEach(checkbox => {
-                checkbox.addEventListener("change", function () {
-                    selectAllCheckbox.checked = [...rowCheckboxes].every(cb => cb.checked);
-                });
-            });
-        }
-
-        // Cập nhật lại checkbox khi dữ liệu bảng thay đổi do HTMX
-        document.body.addEventListener("htmx:afterSwap", function (event) {
-            if (event.target.id === "callsource-body") {
-                updateCheckboxHandlers();
-            }
-        });
-
-        // Gán sự kiện lần đầu
-        updateCheckboxHandlers();
-    });
-</script>
