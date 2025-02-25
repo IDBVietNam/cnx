@@ -1,0 +1,31 @@
+version: "3.9"
+
+services:
+
+  cnx:
+    container_name: cnx
+    build: .
+    environment:
+      - ALLOWED_HOSTS=103.150.240.201
+    volumes:
+      - ./:/code
+      - backend_media:/code/media
+      - backend_volume:/code/staticfiles
+    ports:
+      - 8000:8000
+  
+  nginx:
+    container_name: nginx
+    build:
+      context: .
+      dockerfile: nginx/nginx.Dockerfile
+    ports:
+      - 80:80
+    volumes:
+      - backend_volume:/var/www/mywebsite/backend/staticfiles
+      - backend_media:/var/www/mywebsite/backend/media
+      - /var/log/nginx/:/var/log/nginx/
+
+volumes:
+  backend_media:
+  backend_volume:
