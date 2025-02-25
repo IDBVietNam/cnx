@@ -5,20 +5,12 @@
     <div
         style="padding-right: 2rem;padding-left: 2rem;"
         class="row mt-3">
-        <!-- Left Column -->
-        <div class="col-md-6">
-            <div class="form-group mb-5 d-flex">
-                <label style="width: 250px;">Giới tính</label>
-                <select class="form-control" id="gender" name="{{ form.gender.name }}">
-                    <option {% if form.gender.value == 'Male' %}selected{% endif %}>Male</option>
-                    <option {% if form.gender.value == 'Female' %}selected{% endif %}>Female</option>
-                    <option {% if form.gender.value == 'Other' %}selected{% endif %}>Other</option>
-                </select>
-            </div>
-        </div>
-
-        <!-- Right Column -->
-        <div class="col-md-6">
+        <div class="col-md-10">
+            {% include "../fields/text-input.html" with field=form.permanent_address %}
+            {% include "../fields/text-input.html" with field=form.temporary_address %}
+            {% include "../fields/text-input.html" with field=form.region %}
+            {% include "../fields/text-input.html" with field=form.district %}
+            {% include "../fields/text-input.html" with field=form.province %}
         </div>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>
