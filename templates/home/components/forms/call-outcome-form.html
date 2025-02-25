@@ -5,7 +5,7 @@
     <div
         style="padding-right: 2rem;padding-left: 2rem;"
         class="row mt-3">
-        <div class="col-md-6">
+        <div class="">
             {% include "../fields/dynamic-select.html" with label="Contact Person" field=form.contacted_person options=contacted_person_options only %}
             {% include "../fields/dynamic-select.html" with label="Action Code" field=form.action_code options=action_code_options only %}
             {% include "../fields/dynamic-select.html" with label="Reason Code" field=form.reason_code options=reason_code_options only %}
