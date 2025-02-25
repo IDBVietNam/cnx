@@ -1,0 +1,22 @@
+{% include "./form-title.html" with title="Call Outcome" %}
+
+<form class="needs-validation" hx-post="{% url 'campaign:call-outcome-form' %}">
+    {% csrf_token %}
+    <div
+        style="padding-right: 2rem;padding-left: 2rem;"
+        class="row mt-3">
+        <div class="col-md-6">
+            {% include "../fields/dynamic-select.html" with label="Contact Person" field=form.contacted_person options=contacted_person_options only %}
+            {% include "../fields/dynamic-select.html" with label="Action Code" field=form.action_code options=action_code_options only %}
+            {% include "../fields/dynamic-select.html" with label="Reason Code" field=form.reason_code options=reason_code_options only %}
+            {% include "../fields/boolean-field.html" with field=form.final %}
+            {% include "../fields/boolean-field.html" with field=form.pds %}
+            {% include "../fields/textarea-field.html" with field=form.note %}
+            {% include "../fields/date-input.html" with field=form.payment_date %}
+            {% include "../fields/number-input.html" with field=form.payment_amount %}
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+
