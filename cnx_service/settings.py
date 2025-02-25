@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     "activities",
     "base",
     "campaign",
+    "callsource",
 ]
 
 MIDDLEWARE = [
