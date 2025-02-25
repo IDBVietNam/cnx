@@ -1,0 +1,7 @@
+<div class="mb-5">
+    <label class="form-label" for="area_nput_{{ field.name }}">
+        {{ field.label }}
+        {% if field.field.required %}<span class="text-danger">*</span>{% endif %}
+    </label>
+    <textarea class="form-control" id="area_nput_{{ field.name }}" rows="3"> </textarea>
+</div>

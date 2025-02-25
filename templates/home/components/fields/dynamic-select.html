@@ -4,5 +4,6 @@
             <option value="{{ option.value }}" {% if option.value == field.value %}selected{% endif %}>{{ option.label }}</option>
         {% endfor %}
     </select>
-    <label for="{{ field.id_for_label }}">{{ label }}</label>
+    <label for="{{ field.id_for_label }}">{{ label }} {% if field.field.required %}<span class="text-danger">*</span>{% endif %}
+    </label>
 </div>
