@@ -22,4 +22,5 @@ urlpatterns = [
     path("admin/", admin.site.urls),
     path("phoenix_example/", include("phoenix_example.urls")),
     path("home/", include("home.urls")),
+    path("telesalesv2/", include("telesalesv2.urls")),
 ]

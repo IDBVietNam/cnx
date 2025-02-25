@@ -1,5 +1,4 @@
 from django.urls import path
-
 from .views import component_accordion, index
 
 app_name = "phoenix-example"
