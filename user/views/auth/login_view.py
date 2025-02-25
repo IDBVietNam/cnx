@@ -7,11 +7,10 @@ def user_login(request):
         username = request.POST.get("username")
         password = request.POST.get("password")
         user = authenticate(request, username=username, password=password)
-
         if user is not None:
             login(request, user)
-            return redirect("/home/index")  # Redirect on success
+            return redirect("/home")  # Redirect on success
         else:
-            return render(request, "home/login.html", {"error": "Invalid credentials"})
+            return render(request, "user/login.html", {"error": "Invalid credentials"})
 
     return render(request, "user/login.html")
