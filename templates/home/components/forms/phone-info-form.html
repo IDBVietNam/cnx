@@ -1,6 +1,6 @@
 {% include "./form-title.html" with title="Phone Information" %}
 
-<form>
+<form class="needs-validation" hx-post="{% url 'campaign:phone-info-form' %}">
     {% csrf_token %}
     <div
         style="padding-right: 2rem;padding-left: 2rem;"

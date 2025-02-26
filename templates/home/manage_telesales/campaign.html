@@ -18,14 +18,14 @@
 
         </div>
     </div>
-    <div style="max-width: 48%; min-width: 400px" x-data class="p-2 m-2 border" id="rightTab">
+    <div style="max-width: 48%; min-width: 400px" class="p-2 m-2 border" id="rightTab">
         <div class="p-2 border primary_background_color d-flex item-center">
             <span class="lh-sm fw-semibold fs-5">Section</span>
         </div>
         <div id="messages-container-right">
         </div>
-        <ul class="d-flex list-inline fs-6 p-2 pb-0 border-bottom text-center" x-data="{ activeTab: '{{ tabs.0.id }}' }">
-            {% for tab in tabs %}
+        <ul class="d-flex list-inline fs-6 p-2 pb-0 border-bottom text-center" x-data="{ activeTab: '{{ right_tabs.0.id }}' }">
+            {% for tab in right_tabs %}
                 {% include "home/components/partials/tab-bar-item.html" with target_id="#right-tab-content" %}
             {% endfor %}
         </ul>
