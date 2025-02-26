@@ -4,273 +4,273 @@ hx-get="{% url 'activities:filter-activities' %}"
 {% load humanize %}
 {% block content %}
 
-<div class="telesalesv2">
-    <div class="row p-3">
-        <form class="row gy-2 gx-3 align-items-center" hx-target="#activities-list" hx-swap="innerHTML" method="GET">
-            <div class="col-auto">
-                <select class="form-select" id="autoSizingSelect">
-                    <option value="1">Nguồn</option>
-                    <option value="2">10</option>
-                    <option value="3">20</option>
-                </select>
-            </div>
-            <div class="col-auto">
-                <div class="input-group">
-                    <input class="form-control" id="call-id" value="{{call_id}}" name="call_id" type="text"
-                        placeholder="Call ID">
+    <div class="telesalesv2">
+        <div class="row p-3">
+            <form class="row gy-2 gx-3 align-items-center" hx-target="#activities-list" hx-swap="innerHTML" method="GET">
+                <div class="col-auto">
+                    <select class="form-select" id="autoSizingSelect">
+                        <option value="1">Nguồn</option>
+                        <option value="2">10</option>
+                        <option value="3">20</option>
+                    </select>
                 </div>
-            </div>
-            <div class="col-auto">
-                <input class="form-control" id="contract-info" value="{{contract_info}}" name="contract_info"
-                    type="text" placeholder="ID hợp đồng">
-            </div>
-            <div class="col-auto">
-                <input class="form-control" id="contract-number" value="{{contract_number}}" name="contract_number"
-                    type="text" placeholder="Số hợp đồng">
-            </div>
-            <div class="col-auto">
-                <input class="form-control" id="assigned_agent" value="{{assigned_agent}}" name="assigned_agent"
-                    type="text" placeholder="Nhân viên phụ trách">
-            </div>
+                <div class="col-auto">
+                    <div class="input-group">
+                        <input class="form-control" id="call-id" value="{{call_id}}" name="call_id" type="text"
+                               placeholder="Call ID">
+                    </div>
+                </div>
+                <div class="col-auto">
+                    <input class="form-control" id="contract-info" value="{{contract_info}}" name="contract_info"
+                           type="text" placeholder="ID hợp đồng">
+                </div>
+                <div class="col-auto">
+                    <input class="form-control" id="contract-number" value="{{contract_number}}" name="contract_number"
+                           type="text" placeholder="Số hợp đồng">
+                </div>
+                <div class="col-auto">
+                    <input class="form-control" id="assigned_agent" value="{{assigned_agent}}" name="assigned_agent"
+                           type="text" placeholder="Nhân viên phụ trách">
+                </div>
 
             <!-- Dropdown call_status  -->
-            <div class="col-auto">
-                <select class="form-select" id="autoSizingSelect" name="call_status">
-                    <option value="">Trạng thái gọi</option>
-                    {% for value, label in CALL_STATUS_CHOICES %}
-                    <option value="{{ value }}" {% if call_status == value %}selected{% endif %}>{{ label }}</option>
-                    {% endfor %}
-                </select>
-            </div>
+                <div class="col-auto">
+                    <select class="form-select" id="autoSizingSelect" name="call_status">
+                        <option value="">Trạng thái gọi</option>
+                        {% for value, label in CALL_STATUS_CHOICES %}
+                            <option value="{{ value }}" {% if call_status == value %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
 
-            <div class="col-auto">
-                <input class="form-control" id="id-card-number" value="{{id_card_number}}" name="id_card_number"
-                    type="text" placeholder="Số CMND">
-            </div>
-            <div class="col-auto">
-                <input class="form-control" id="mobile-number" value="{{mobile_number}}" name="mobile_number"
-                    type="text" placeholder="Di động">
-            </div>
-            <div class="col-auto">
-                <input class="form-control" id="call-reason" value="{{call_reason}}" name="call_reason" type="text"
-                    placeholder="Lý do gọi">
-            </div>
+                <div class="col-auto">
+                    <input class="form-control" id="id-card-number" value="{{id_card_number}}" name="id_card_number"
+                           type="text" placeholder="Số CMND">
+                </div>
+                <div class="col-auto">
+                    <input class="form-control" id="mobile-number" value="{{mobile_number}}" name="mobile_number"
+                           type="text" placeholder="Di động">
+                </div>
+                <div class="col-auto">
+                    <input class="form-control" id="call-reason" value="{{call_reason}}" name="call_reason" type="text"
+                           placeholder="Lý do gọi">
+                </div>
 
             <!-- Dropdown call_result  -->
-            <div class="col-auto">
-                <select class="form-select" id="autoSizingSelect">
-                    <option value="1">Kết quả gọi</option>
-                    {% for value, label in CALL_RESULT_CHOICES %}
-                    <option value="{{ value }}">{{ label }}</option>
-                    {% endfor %}
-                </select>
-            </div>
+                <div class="col-auto">
+                    <select class="form-select" id="autoSizingSelect">
+                        <option value="1">Kết quả gọi</option>
+                        {% for value, label in CALL_RESULT_CHOICES %}
+                            <option value="{{ value }}">{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
 
 
-            <div class="col-auto">
-                <input class="form-control" id="scheduled-time" name="scheduled_time" type="text"
-                    placeholder="Thời gian chỉ định">
-            </div>
+                <div class="col-auto">
+                    <input class="form-control" id="scheduled-time" name="scheduled_time" type="text"
+                           placeholder="Thời gian chỉ định">
+                </div>
 
-            <div class="col-auto">
-                <select class="form-select" id="autoSizingSelect">
-                    <option value="1">Active</option>
-                    <option value="2">10</option>
-                    <option value="3">20</option>
-                </select>
-            </div>
-            <div class="col-auto">
-                <button class="btn btn-primary" type="submit"><span class="fas fa-search"></span></button>
-            </div>
-        </form>
-    </div>
-    <div id="tableExample"
-        data-list="{&quot;valueNames&quot;:[&quot;name&quot;,&quot;email&quot;,&quot;age&quot;],&quot;page&quot;:5,&quot;pagination&quot;:true}">
-        <div class="table-responsive">
-            <table class="table table-sm fs-9 mb-0">
-                <thead>
-                    <tr>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">STT</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">Chọn</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">Ngày tạo</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">Di động</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">SĐT Ref 1</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">SĐT Ref 2</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">Spouse phone</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">Add phone 1</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">Add phone 2</th>
+                <div class="col-auto">
+                    <select class="form-select" id="autoSizingSelect">
+                        <option value="1">Active</option>
+                        <option value="2">10</option>
+                        <option value="3">20</option>
+                    </select>
+                </div>
+                <div class="col-auto">
+                    <button class="btn btn-primary" type="submit"><span class="fas fa-search"></span></button>
+                </div>
+            </form>
+        </div>
+        <div id="tableExample"
+             data-list="{&quot;valueNames&quot;:[&quot;name&quot;,&quot;email&quot;,&quot;age&quot;],&quot;page&quot;:5,&quot;pagination&quot;:true}">
+            <div class="table-responsive">
+                <table class="table table-sm fs-9 mb-0">
+                    <thead>
+                        <tr>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">STT</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">Chọn</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">Ngày tạo</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">Di động</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">SĐT Ref 1</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">SĐT Ref 2</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">Spouse phone</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">Add phone 1</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">Add phone 2</th>
 
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">Nhân viên phụ trách
-                        </th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">Số hợp đồng</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">ID Hợp đồng</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">Nguồn gọi</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">fkKH</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">Tiêu đề</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">Số CMND</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">Tên KH</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">Total Overdue</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">Tensor</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">PRODUCT GROUP</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">Địa chỉ đầy đủ</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">Quận/huyện</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">Tỉnh/TP</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">Trạng thái gọi</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">Thời gian gọi lại</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">Kết quả gọi</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">Lý do gọi</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">Thời gian chỉ định</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">Date final</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">Last action time</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">Last action code</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">Last remark</th>
-                        <th class="sort border-top border-translucent ps-3" data-sort="name">Nguồn</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">Nhân viên phụ trách
+                            </th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">Số hợp đồng</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">ID Hợp đồng</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">Nguồn gọi</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">fkKH</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">Tiêu đề</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">Số CMND</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">Tên KH</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">Total Overdue</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">Tensor</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">PRODUCT GROUP</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">Địa chỉ đầy đủ</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">Quận/huyện</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">Tỉnh/TP</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">Trạng thái gọi</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">Thời gian gọi lại</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">Kết quả gọi</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">Lý do gọi</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">Thời gian chỉ định</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">Date final</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">Last action time</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">Last action code</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">Last remark</th>
+                            <th class="sort border-top border-translucent ps-3" data-sort="name">Nguồn</th>
                         <!-- <th class="sort border-top border-translucent" data-sort="email">Quận huyện</th>
                         <th class="sort border-top border-translucent" data-sort="age">Age</th>
                         <th class="sort text-end align-middle pe-0 border-top border-translucent" scope="col">ACTION</th> -->
-                    </tr>
-                </thead>
-                <tbody class="list">
-                    {% for sale in sales %}
-                    <tr>
-                        <td class="align-middle">{{sale.id}}</td>
+                        </tr>
+                    </thead>
+                    <tbody class="list">
+                        {% for sale in sales %}
+                            <tr>
+                                <td class="align-middle">{{sale.id}}</td>
 
-                        <td class="align-middle">
-                            <button class="btn btn-primary me-1 mb-1 p-1 d-flex align-items-center" type="button">
-                                <span class="d-inline-flex align-items-center text-nowrap gap-2">
-                                    <i class="fa-solid fa-up-right-from-square"></i> Load Call
-                                </span>
-                            </button>
-                        </td>
+                                <td class="align-middle">
+                                    <button class="btn btn-primary me-1 mb-1 p-1 d-flex align-items-center" type="button">
+                                        <span class="d-inline-flex align-items-center text-nowrap gap-2">
+                                            <i class="fa-solid fa-up-right-from-square"></i> Load Call
+                                        </span>
+                                    </button>
+                                </td>
 
-                        <td class="align-middle">{{sale.created_at|date:"m-d-Y H:i:s"}}</td>
+                                <td class="align-middle">{{sale.created_at|date:"m-d-Y H:i:s"}}</td>
 
-                        <td class="align-middle">{% if sale.mobile_number %}<button
-                                class="btn btn-primary me-1 mb-1 p-1 d-flex align-items-center" type="button"><span
-                                    class="d-inline-flex align-items-center text-nowrap gap-2 ">
-                                    <i class="fa-solid fa-phone"></i> {{ sale.mobile_number }}
-                                </span></button>{% endif %}</td>
+                                <td class="align-middle">{% if sale.mobile_number %}<button
+                                    class="btn btn-primary me-1 mb-1 p-1 d-flex align-items-center" type="button"><span
+                                        class="d-inline-flex align-items-center text-nowrap gap-2 ">
+                                        <i class="fa-solid fa-phone"></i> {{ sale.mobile_number }}
+                                    </span></button>{% endif %}</td>
 
-                        <td class="align-middle">{% if sale.reference_phone_1 %}<button
-                                class="btn btn-primary me-1 mb-1 p-1 d-flex align-items-center" type="button"><span
-                                    class="d-inline-flex align-items-center text-nowrap gap-2">
-                                    <i class="fa-solid fa-phone"></i> {{sale.reference_phone_1}}
-                                </span></button>{% endif %}</td>
+                                <td class="align-middle">{% if sale.reference_phone_1 %}<button
+                                    class="btn btn-primary me-1 mb-1 p-1 d-flex align-items-center" type="button"><span
+                                        class="d-inline-flex align-items-center text-nowrap gap-2">
+                                        <i class="fa-solid fa-phone"></i> {{sale.reference_phone_1}}
+                                    </span></button>{% endif %}</td>
 
-                        <td class="align-middle">{% if sale.reference_phone_2 %}<button
-                                class="btn btn-primary me-1 mb-1 p-1 d-flex align-items-center" type="button"><span
-                                    class="d-inline-flex align-items-center text-nowrap gap-2">
-                                    <i class="fa-solid fa-phone"></i> {{sale.reference_phone_2}}
-                                </span></button>{% endif %}</td>
+                                <td class="align-middle">{% if sale.reference_phone_2 %}<button
+                                    class="btn btn-primary me-1 mb-1 p-1 d-flex align-items-center" type="button"><span
+                                        class="d-inline-flex align-items-center text-nowrap gap-2">
+                                        <i class="fa-solid fa-phone"></i> {{sale.reference_phone_2}}
+                                    </span></button>{% endif %}</td>
 
-                        <td class="align-middle">{% if sale.spouse_phone %}<button class="btn btn-primary 
-                            me-1 mb-1 p-1 d-flex align-items-center" type="button"><span
+                                <td class="align-middle">{% if sale.spouse_phone %}<button class="btn btn-primary
+                                                                                                  me-1 mb-1 p-1 d-flex align-items-center" type="button"><span
                                     class="d-inline-flex align-items-center text-nowrap gap-2">
                                     <i class="fa-solid fa-phone"></i> {{sale.spouse_phone}}
                                 </span></button>{% endif %}</td>
 
-                        <td class="align-middle">{% if sale.additional_phone_1 %}<button
-                                class="btn btn-primary me-1 mb-1 p-1 d-flex align-items-center" type="button"><span
-                                    class="d-inline-flex align-items-center text-nowrap gap-2">
-                                    <i class="fa-solid fa-phone"></i> {{sale.additional_phone_1}}
-                                </span></button>{% endif %}</td>
+                                <td class="align-middle">{% if sale.additional_phone_1 %}<button
+                                    class="btn btn-primary me-1 mb-1 p-1 d-flex align-items-center" type="button"><span
+                                        class="d-inline-flex align-items-center text-nowrap gap-2">
+                                        <i class="fa-solid fa-phone"></i> {{sale.additional_phone_1}}
+                                    </span></button>{% endif %}</td>
 
-                        <td class="align-middle">{% if sale.additional_phone_2 %}<button
-                                class="btn btn-primary me-1 mb-1 p-1 d-flex align-items-center" type="button"><span
-                                    class="d-inline-flex align-items-center text-nowrap gap-2">
-                                    <i class="fa-solid fa-phone"></i> {{sale.additional_phone_2}}
-                                </span></button>{% endif %}</td>
+                                <td class="align-middle">{% if sale.additional_phone_2 %}<button
+                                    class="btn btn-primary me-1 mb-1 p-1 d-flex align-items-center" type="button"><span
+                                        class="d-inline-flex align-items-center text-nowrap gap-2">
+                                        <i class="fa-solid fa-phone"></i> {{sale.additional_phone_2}}
+                                    </span></button>{% endif %}</td>
 
-                        <td class="align-middle">{{sale.assigned_agent}}</td>
-                        <td class="align-middle">{{sale.contract_number}}</td>
-                        <td class="align-middle">{{sale.contract_info}}</td>
-                        <td class="align-middle">{{sale.call_source}}</td>
-                        <td class="align-middle">{{sale.customer_code}}</td>
-                        <td class="align-middle">{{sale.title}}</td>
-                        <td class="align-middle">{{sale.id_card_number}}</td>
-                        <td class="align-middle">{{sale.customer_name}}</td>
-                        {% load humanize %}
-                        <td class="align-middle">{{sale.total_overdue|intcomma}}</td>
+                                <td class="align-middle">{{sale.assigned_agent}}</td>
+                                <td class="align-middle">{{sale.contract_number}}</td>
+                                <td class="align-middle">{{sale.contract_info}}</td>
+                                <td class="align-middle">{{sale.call_source}}</td>
+                                <td class="align-middle">{{sale.customer_code}}</td>
+                                <td class="align-middle">{{sale.title}}</td>
+                                <td class="align-middle">{{sale.id_card_number}}</td>
+                                <td class="align-middle">{{sale.customer_name}}</td>
+                                {% load humanize %}
+                                <td class="align-middle">{{sale.total_overdue|intcomma}}</td>
 
-                        <td class="align-middle">{{sale.tenor}}</td>
-                        <td class="align-middle">{{sale.product_group}}</td>
-                        <td class="align-middle">{{sale.full_address}}</td>
-                        <td class="align-middle">{{sale.district}}</td>
-                        <td class="align-middle">{{sale.city}}</td>
-                        <td class="align-middle">{{sale.call_status}}</td>
-                        <td class="align-middle">{{sale.recall_time|date:"Y-m-d H:i:s"}}</td>
-                        <td class="align-middle">{{sale.call_result}}</td>
-                        <td class="align-middle">{{sale.call_reason}}</td>
-                        <td class="align-middle">{{sale.scheduled_time|date:"Y-m-d H:i:s"}}</td>
-                        <td class="align-middle">{{sale.date_final|date:"Y-m-d H:i:sP"}}</td>
-                        <td class="align-middle">{{sale.last_action_time|date:"Y-m-d H:i:s"}}</td>
-                        <td class="align-middle">{{sale.last_action_code}}</td>
-                        <td class="align-middle">{{sale.last_remark}}</td>
-                        <td class="align-middle">{{sale.call_source_uuid}}</td>
+                                <td class="align-middle">{{sale.tenor}}</td>
+                                <td class="align-middle">{{sale.product_group}}</td>
+                                <td class="align-middle">{{sale.full_address}}</td>
+                                <td class="align-middle">{{sale.district}}</td>
+                                <td class="align-middle">{{sale.city}}</td>
+                                <td class="align-middle">{{sale.call_status}}</td>
+                                <td class="align-middle">{{sale.recall_time|date:"Y-m-d H:i:s"}}</td>
+                                <td class="align-middle">{{sale.call_result}}</td>
+                                <td class="align-middle">{{sale.call_reason}}</td>
+                                <td class="align-middle">{{sale.scheduled_time|date:"Y-m-d H:i:s"}}</td>
+                                <td class="align-middle">{{sale.date_final|date:"Y-m-d H:i:sP"}}</td>
+                                <td class="align-middle">{{sale.last_action_time|date:"Y-m-d H:i:s"}}</td>
+                                <td class="align-middle">{{sale.last_action_code}}</td>
+                                <td class="align-middle">{{sale.last_remark}}</td>
+                                <td class="align-middle">{{sale.call_source_uuid}}</td>
                         <!-- <td class="align-middle email">{{sale.last_remark}}</td>
                         <td class="align-middle email">anna@example.com</td>
                         <td class="align-middle email">anna@example.com</td>
                         <td class="align-middle age">18</td> -->
 
-                        <td class="align-middle white-space-nowrap text-end pe-0">
-                            <div class="btn-reveal-trigger position-static">
-                                <button
-                                    class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10"
-                                    type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true"
-                                    aria-expanded="false" data-bs-reference="parent"><svg
-                                        class="svg-inline--fa fa-ellipsis fs-10" aria-hidden="true" focusable="false"
-                                        data-prefix="fas" data-icon="ellipsis" role="img"
-                                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
-                                        <path fill="currentColor"
-                                            d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z">
-                                        </path>
-                                    </svg><!-- <span class="fas fa-ellipsis-h fs-10"></span> Font Awesome fontawesome.com --></button>
-                                <div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item"
-                                        href="#!">View</a><a class="dropdown-item" href="#!">Export</a>
-                                    <div class="dropdown-divider"></div><a class="dropdown-item text-danger"
-                                        href="#!">Remove</a>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
-                    {% empty %}
-                    <tr>
-                        <td colspan="15" class="text-center fw-bold align-middle">
-                            Không có dữ liệu
-                        </td>
-                    </tr>
+                                <td class="align-middle white-space-nowrap text-end pe-0">
+                                    <div class="btn-reveal-trigger position-static">
+                                        <button
+                                            class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10"
+                                            type="button" data-bs-toggle="dropdown" data-boundary="window" aria-haspopup="true"
+                                            aria-expanded="false" data-bs-reference="parent"><svg
+                                                class="svg-inline--fa fa-ellipsis fs-10" aria-hidden="true" focusable="false"
+                                                data-prefix="fas" data-icon="ellipsis" role="img"
+                                                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" data-fa-i2svg="">
+                                                <path fill="currentColor"
+                                                      d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z">
+                                                </path>
+                                            </svg><!-- <span class="fas fa-ellipsis-h fs-10"></span> Font Awesome fontawesome.com --></button>
+                                        <div class="dropdown-menu dropdown-menu-end py-2"><a class="dropdown-item"
+                                                                                             href="#!">View</a><a class="dropdown-item" href="#!">Export</a>
+                                            <div class="dropdown-divider"></div><a class="dropdown-item text-danger"
+                                                                                   href="#!">Remove</a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="15" class="text-center fw-bold align-middle">
+                                    Không có dữ liệu
+                                </td>
+                            </tr>
 
-                    {% endfor %}
-                </tbody>
-            </table>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
         </div>
 
-    </div>
-
-    <div class="pt-3">
-        <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-center">
-                {% if page_obj.has_previous %}
-                <li class="page-item">
-                    <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
-                </li>
-                {% endif %}
-
-                {% if page_obj.number > 3 %}
-                <li class="page-item">
-                    <a class="page-link" href="?page=1">1</a>
-                </li>
-                {% if page_obj.number > 4 %}
-                <li class="page-item disabled"><span class="page-link">...</span></li>
-                {% endif %}
-                {% endif %}
-
-                {% for num in page_obj.paginator.page_range %}
-                {% if num >= page_obj.number|add:"-2" and num <= page_obj.number|add:"2" %} <li
-                    class="page-item {% if page_obj.number == num %}active{% endif %}">
-                    <a class="page-link" href="?page={{ num }}">{{ num }}</a>
-                    </li>
+        <div class="pt-3">
+            <nav aria-label="Page navigation">
+                <ul class="pagination justify-content-center">
+                    {% if page_obj.has_previous %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                        </li>
                     {% endif %}
+
+                    {% if page_obj.number > 3 %}
+                        <li class="page-item">
+                            <a class="page-link" href="?page=1">1</a>
+                        </li>
+                        {% if page_obj.number > 4 %}
+                            <li class="page-item disabled"><span class="page-link">...</span></li>
+                        {% endif %}
+                    {% endif %}
+
+                    {% for num in page_obj.paginator.page_range %}
+                        {% if num >= page_obj.number|add:"-2" and num <= page_obj.number|add:"2" %} <li
+                            class="page-item {% if page_obj.number == num %}active{% endif %}">
+                            <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                        </li>
+                        {% endif %}
                     {% endfor %}
 
                     {% if page_obj.number < page_obj.paginator.num_pages|add:"-2" %} <li class="page-item disabled">
@@ -280,17 +280,17 @@ hx-get="{% url 'activities:filter-activities' %}"
                                 {{ page_obj.paginator.num_pages }}
                             </a>
                         </li>
-                        {% endif %}
+                    {% endif %}
 
-                        {% if page_obj.has_next %}
+                    {% if page_obj.has_next %}
                         <li class="page-item">
                             <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
                         </li>
-                        {% endif %}
-            </ul>
-        </nav>
+                    {% endif %}
+                </ul>
+            </nav>
 
+        </div>
     </div>
-</div>
 
 {% endblock %}
