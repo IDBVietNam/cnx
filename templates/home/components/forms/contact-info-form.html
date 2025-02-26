@@ -1,26 +1,39 @@
+{% load static %}
 
-{% include "./form-title.html" with title="Contact Information" %}
-
-<form>
+<form class="needs-validation" hx-post="{% url 'campaign:contact-info-form' %}">
+    {% include "./form-title.html" with title="Contact Information" %}
     {% csrf_token %}
-    <div
-        style="padding-right: 2rem;padding-left: 2rem;"
-        class="row mt-3">
+    <div class="d-flex mt-3 wrap p-2" style="gap: 10px;">
         <!-- Left Column -->
         <div class="col-md-6">
-            <div class="form-group mb-5 d-flex">
-                <label style="width: 250px;">Contact Info Form Test</label>
-                <select class="form-control" id="gender" name="{{ form.gender.name }}">
-                    <option {% if form.gender.value == 'Male' %}selected{% endif %}>Male</option>
-                    <option {% if form.gender.value == 'Female' %}selected{% endif %}>Female</option>
-                    <option {% if form.gender.value == 'Other' %}selected{% endif %}>Other</option>
-                </select>
-            </div>
+            {% include "../fields/text-input.html" with field=form.loan_id %}
+            {% include "../fields/text-input.html" with field=form.contract_number %}
+            {% include "../fields/date-input.html" with field=form.contract_date %}
+            {% include "../fields/text-input.html" with field=form.current_account %}
+            {% include "../fields/text-input.html" with field=form.dpd_current %}
+            {% include "../fields/text-input.html" with field=form.dpd_assign %}
+            {% include "../fields/text-input.html" with field=form.mob %}
+            {% include "../fields/text-input.html" with field=form.loan_amount %}
+            {% include "../fields/text-input.html" with field=form.loan_term %}
+            {% include "../fields/text-input.html" with field=form.obs_due_no %}
+            {% include "../fields/date-input.html" with field=form.payment_request_date %}
+            {% include "../fields/number-input.html" with field=form.late_days %}
+            {% include "../fields/number-input.html" with field=form.monthly_payment is_currency=True %}
+            {% include "../fields/date-input.html" with field=form.assign_invalid_date %}
         </div>
 
-        <!-- Right Column -->
+          <!-- Right Column -->
         <div class="col-md-6">
+            {% include "../fields/number-input.html" with field=form.penalty_amount is_currency=True %}
+            {% include "../fields/number-input.html" with field=form.interest_amount is_currency=True %}
+            {% include "../fields/number-input.html" with field=form.principal_amount is_currency=True %}
+            {% include "../fields/text-input.html" with field=form.pos_assign %}
+            {% include "../fields/number-input.html" with field=form.total_payment is_currency=True %}
+            {% include "../fields/text-input.html" with field=form.last_result_final %}
+            {% include "../fields/number-input.html" with field=form.total_amount is_currency=True %}
+            {% include "../fields/date-input.html" with field=form.date_start %}
+            {% include "../fields/date-input.html" with field=form.date_end %}
         </div>
     </div>
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button class="btn btn-primary" type="submit" class="btn btn-primary">Submit</button>
 </form>

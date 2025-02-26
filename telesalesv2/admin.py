@@ -1,4 +1,5 @@
 from django.contrib import admin
+
 from .models import TelesalesV2
 
 # Register your models here.

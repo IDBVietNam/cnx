@@ -13,6 +13,7 @@ repos:
     hooks:
       - id: flake8
         args: ["--max-line-length=120"]
+        exclude: "static/|staticfiles/|README.md|Dockerfile|(^|/)__init__\\.py$"
   - repo: local
     hooks:
     -   id: lower-case-only
@@ -20,9 +21,21 @@ repos:
         entry: filenames must be lower-case or lower_case only
         language: fail
         files: '[^a-z0-9._/-]'
-        exclude: "static/|staticfiles/|README.md|Dockerfile"
-  - repo: https://github.com/rtts/djhtml
-    rev: 3.0.7
+        exclude: "static/|staticfiles/|README.md|Dockerfile|(^|/)__init__\\.py$"
+  # - repo: https://github.com/rtts/djhtml
+  #   rev: 3.0.7
+  #   hooks:
+  #     - id: djhtml
+  #       entry: djhtml --tabwidth 4
+  # - repo: https://github.com/ecugol/pre-commit-hooks-django
+  #   rev: v0.4.0
+  #   hooks:
+  #   -   id: check-absent-migrations
+  - repo: local
     hooks:
-      - id: djhtml
-        entry: djhtml --tabwidth 4
+      - id: check-print-statements
+        name: Check for print statements
+        entry: ./pre-commit/check_print_statements.py
+        language: system
+        types: [python]
+        exclude: "pre-commit/"

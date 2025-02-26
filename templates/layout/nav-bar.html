@@ -68,7 +68,10 @@
                     <div class="nav-item-wrapper">
                         <a
                             class="nav-link label-1"
-                            href="#"
+                            hx-get="{% url 'activities:activities_form' %}"
+                            hx-target="#nav-content"
+                            hx-swap="innerHTML"
+                            hx-trigger="click"
                             role="button"
                             data-bs-toggle=""
                             aria-expanded="false"
@@ -131,7 +134,7 @@
                             <li class="nav-item">
                                 <a
                                     class="nav-link "
-                                    hx-get="{% url 'home:manage-telesales-campaign' %}"
+                                    hx-get="{% url 'campaign:manage-telesales-campaign' %}"
                                     hx-target="#nav-content"
                                     hx-swap="innerHTML"
                                     hx-trigger="click"

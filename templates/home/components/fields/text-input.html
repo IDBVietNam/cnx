@@ -1,4 +1,4 @@
-<div class="mb-5">
+<div class="mb-5 input-group has-validation">
     <div class="form-floating">
         <input
             class="form-control"
@@ -7,11 +7,13 @@
             name="{{ field.name }}"
             value="{{ field.value|default:'' }}"
             placeholder="{{ field.placeholder|default:'' }}"
-            {% if field.required %}required{% endif %}
+            {% if field.field.required %}required{% endif %}
         />
         <label for="floatingEventInput_{{ field.name }}">
             {{ field.label }}
-            {% if field.required %}<span class="text-danger">*</span>{% endif %}
+            {% if field.field.required %}<span class="text-danger">*</span>{% endif %}
         </label>
+        <p style="display: block; position: absolute; bottom: -35px; left: 10px;" class="invalid-feedback">{{ field.errors.0 }}</p>
     </div>
 </div>
+

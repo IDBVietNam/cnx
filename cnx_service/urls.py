@@ -23,4 +23,7 @@ urlpatterns = [
     path("phoenix_example/", include("phoenix_example.urls")),
     path("home/", include("home.urls")),
     path("telesalesv2/", include("telesalesv2.urls")),
+    path("campaign/", include("campaign.urls")),
+    path("activities/", include("activities.urls")),
+    path("base/", include("base.urls")),
 ]

@@ -4,20 +4,37 @@ from django.db import migrations, models
 
 
 class Migration(migrations.Migration):
-
     dependencies = [
-        ('telesalesv2', '0003_alter_telesalesv2_call_status'),
+        ("telesalesv2", "0003_alter_telesalesv2_call_status"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='telesalesv2',
-            name='call_result',
-            field=models.CharField(blank=True, choices=[('brother', 'Brother'), ('child', 'Child'), ('client', 'Client'), ('father', 'Father'), ('mother', 'Mother'), ('nobody', 'Nobody'), ('other', 'Other'), ('sibling', 'Sibling'), ('sister', 'Sister'), ('spouse', 'Spouse')], max_length=50, verbose_name='Kết quả gọi'),
+            model_name="telesalesv2",
+            name="call_result",
+            field=models.CharField(
+                blank=True,
+                choices=[
+                    ("brother", "Brother"),
+                    ("child", "Child"),
+                    ("client", "Client"),
+                    ("father", "Father"),
+                    ("mother", "Mother"),
+                    ("nobody", "Nobody"),
+                    ("other", "Other"),
+                    ("sibling", "Sibling"),
+                    ("sister", "Sister"),
+                    ("spouse", "Spouse"),
+                ],
+                max_length=50,
+                verbose_name="Kết quả gọi",
+            ),
         ),
         migrations.AlterField(
-            model_name='telesalesv2',
-            name='total_overdue',
-            field=models.IntegerField(blank=True, default=0, verbose_name='Total Overdue'),
+            model_name="telesalesv2",
+            name="total_overdue",
+            field=models.IntegerField(
+                blank=True, default=0, verbose_name="Total Overdue"
+            ),
         ),
     ]

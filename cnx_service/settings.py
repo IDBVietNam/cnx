@@ -38,11 +38,13 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
-    'django.contrib.humanize',
-
+    "django.contrib.humanize",
     "phoenix_example",
     "home",
-    'telesalesv2',
+    "telesalesv2",
+    "activities",
+    "base",
+    "campaign",
 ]
 
 MIDDLEWARE = [
@@ -50,7 +52,7 @@ MIDDLEWARE = [
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
-    'django.middleware.locale.LocaleMiddleware',  # Thê
+    "django.middleware.locale.LocaleMiddleware",  # Thê
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
@@ -137,9 +139,9 @@ STATICFILES_DIRS = [
 
 
 # cấu hình tiếng việt
-LANGUAGE_CODE = 'vi'
-TIME_ZONE = 'Asia/Ho_Chi_Minh'
+LANGUAGE_CODE = "vi"
+TIME_ZONE = "Asia/Ho_Chi_Minh"
 
 USE_I18N = True
 USE_L10N = True
-USE_TZ = True
+USE_TZ = False
