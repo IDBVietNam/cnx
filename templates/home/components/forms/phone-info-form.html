@@ -1,24 +1,24 @@
 {% include "./form-title.html" with title="Phone Information" %}
 
-<form>
+<form class="needs-validation" hx-post="{% url 'campaign:phone-info-form' %}">
     {% csrf_token %}
     <div
         style="padding-right: 2rem;padding-left: 2rem;"
         class="row mt-3">
-        <!-- Left Column -->
+  <!-- Left Column -->
         <div class="col-md-6">
-            <div class="form-group mb-5 d-flex">
-                <label style="width: 250px;">Giới tính</label>
-                <select class="form-control" id="gender" name="{{ form.gender.name }}">
-                    <option {% if form.gender.value == 'Male' %}selected{% endif %}>Male</option>
-                    <option {% if form.gender.value == 'Female' %}selected{% endif %}>Female</option>
-                    <option {% if form.gender.value == 'Other' %}selected{% endif %}>Other</option>
-                </select>
-            </div>
+            {% include "../fields/text-input.html" with field=form.spouse_name %}
+            {% include "../fields/text-input.html" with field=form.contact_name_1 %}
+            {% include "../fields/text-input.html" with field=form.contact_relationship_1 %}
+            {% include "../fields/text-input.html" with field=form.contact_name_2 %}
+            {% include "../fields/text-input.html" with field=form.contact_relationship_2 %}
         </div>
 
-        <!-- Right Column -->
+<!-- Right Column -->
         <div class="col-md-6">
+            {% include "../fields/text-input.html" with field=form.family_book %}
+            {% include "../fields/text-input.html" with field=form.other_contact_name %}
+            {% include "../fields/text-input.html" with field=form.other_contact_name_2 %}
         </div>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>

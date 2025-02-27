@@ -1,24 +1,23 @@
-{% include "./form-title.html" with title="Payment Information" %}
 
-<form>
+<form class="needs-validation" hx-post="{% url 'campaign:payment-info-form' %}">
+    {% include "./form-title.html" with title="Payment Information" %}
     {% csrf_token %}
     <div
         style="padding-right: 2rem;padding-left: 2rem;"
         class="row mt-3">
-        <!-- Left Column -->
-        <div class="col-md-6">
-            <div class="form-group mb-5 d-flex">
-                <label style="width: 250px;">Giới tính</label>
-                <select class="form-control" id="gender" name="{{ form.gender.name }}">
-                    <option {% if form.gender.value == 'Male' %}selected{% endif %}>Male</option>
-                    <option {% if form.gender.value == 'Female' %}selected{% endif %}>Female</option>
-                    <option {% if form.gender.value == 'Other' %}selected{% endif %}>Other</option>
-                </select>
-            </div>
-        </div>
-
-        <!-- Right Column -->
-        <div class="col-md-6">
+        <div class="col-md-10">
+            {% include "../fields/date-input.html" with field=form.first_paid_date %}
+            {% include "../fields/text-input.html" with field=form.account_number %}
+            {% include "../fields/number-input.html" with field=form.largest_amount is_currency=True %}
+            {% include "../fields/date-input.html" with field=form.last_payment_date %}
+            {% include "../fields/date-input.html" with field=form.disbursement_date %}
+            {% include "../fields/text-input.html" with field=form.cif %}
+            {% include "../fields/date-input.html" with field=form.due_date_overdue %}
+            {% include "../fields/date-input.html" with field=form.next_due_date %}
+            {% include "../fields/number-input.html" with field=form.next_due_amount is_currency=True %}
+            {% include "../fields/text-input.html" with field=form.future_prin_amt %}
+            {% include "../fields/text-input.html" with field=form.remain_prin %}
+            {% include "../fields/text-input.html" with field=form.pos_bom %}
         </div>
     </div>
     <button type="submit" class="btn btn-primary">Submit</button>

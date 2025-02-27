@@ -73,3 +73,9 @@ def activities(request: HttpRequest) -> HttpResponse:
             "filter": activity_filter,  # Pass filter for UI
         },
     )
+
+
+def test_telesales(request: HttpRequest) -> HttpResponse:
+    if not request.headers.get("HX-Request"):
+        return redirect("base:404")
+    return render(request, "home/activities/test_telesales.html")
