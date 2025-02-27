@@ -10,12 +10,22 @@
               hx-swap="innerHTML"
         >
             <div class="col-auto">
-                <select class="form-select" id="autoSizingSelect">
-                    <option value="1">5</option>
-                    <option value="2">10</option>
-                    <option value="3">20</option>
+                <select class="form-select" id="autoSizingSelect"
+                        name="per_page"
+                        hx-get="{% url 'activities:filter-activities' %}"
+                        hx-trigger="change"
+                        hx-target="#activities-list"
+                        hx-swap="innerHTML"
+                        hx-push-url="true"
+                        @change="updateFiltersAndSubmit()"
+                >
+                    <option value=5 {% if per_page|default:10 == 5 %}selected{% endif %}>5</option>
+                    <option value=10 {% if per_page|default:10 == 10 %}selected{% endif %}>10</option>
+                    <option value=20 {% if per_page|default:10 == 20 %}selected{% endif %}>20</option>
                 </select>
             </div>
+
+
             <div class="col-auto">
                 <div class="input-group">
                     <input class="form-control" id="contract-number" name="contract_number" type="text" placeholder="Số hợp đồng">
@@ -38,17 +48,14 @@
             </div>
         </form>
     </div>
-    <div class="table-responsive" id="activities-list">
-        {% include "home/activities/partials/activities_list.html" %}
-    </div>
-    <div class="d-flex justify-content-between mt-3"><span class="d-none d-sm-inline-block" data-list-info="data-list-info"></span>
-        <div class="d-flex">
-            <button class="page-link" data-list-pagination="prev"><span class="fas fa-chevron-left"></span></button>
-            <ul class="mb-0 pagination"></ul>
-            <button class="page-link pe-0" data-list-pagination="next"><span class="fas fa-chevron-right"></span></button>
+    <div id="activities-table" x-data="{ currentPage: {{ current_page }}, totalPages: {{ total_pages }}, perPage: {{ per_page }}}">
+        <div class="table-responsive" id="activities-list">
+            {% include "home/activities/partials/activities_list.html" %}
         </div>
     </div>
+
 </div>
+
 <script>
     flatpickr("#datepicker-from", {
         disableMobile: true,
@@ -57,6 +64,25 @@
     flatpickr("#datepicker-to", {
         disableMobile: true,
         dateFormat: "d/m/Y"
+    });
+    function updateFiltersAndSubmit() {
+        let perPage = document.getElementById("autoSizingSelect").value;
+        let contractNumber = document.getElementById("contract-number").value;
+        let actionCode = document.getElementById("action-code").value;
+        let contactedPerson = document.getElementById("contacted-person").value;
+        let fromDate = document.getElementById("datepicker-from").value;
+        let toDate = document.getElementById("datepicker-to").value;
+
+        let queryString = `?page={{ current_page }}&per_page={{ per_page }}&contract_number=${contractNumber}&action_code=${actionCode}&contacted_person=${contactedPerson}&from_date=${fromDate}&to_date=${toDate}`;
+        let select = document.getElementById("autoSizingSelect");
+        select.setAttribute("hx-get", "{% url 'activities:filter-activities' %}" + queryString);
+
+        select.dispatchEvent(new Event("change")); // Trigger HTMX update
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        flatpickr("#datepicker-from", { disableMobile: true, dateFormat: "d/m/Y" });
+        flatpickr("#datepicker-to", { disableMobile: true, dateFormat: "d/m/Y" });
     });
 
 </script>
