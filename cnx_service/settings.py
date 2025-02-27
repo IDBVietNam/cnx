@@ -44,6 +44,8 @@ INSTALLED_APPS = [
     "activities",
     "base",
     "campaign",
+    # 3rd party
+    "django_filters",
 ]
 
 MIDDLEWARE = [
