@@ -6,8 +6,8 @@ This guide will help you set up and run the project using Docker and Docker Comp
 
 Ensure that you have installed the following software on your machine:
 
--   [Docker](https://www.docker.com/get-started)
--   [Docker Compose](https://docs.docker.com/compose/install/)
+- [Docker](https://www.docker.com/get-started)
+- [Docker Compose](https://docs.docker.com/compose/install/)
 
 ## Getting Started
 
@@ -82,6 +82,10 @@ By adhering to this convention, we ensure consistency and readability throughout
 To maintain code quality and consistency, we use pre-commit hooks. Follow these steps to install and set up pre-commit hooks for this project:
 
 1. Install `pre-commit`:
+
+Cách fix cái djhtml
+Nhấn Window + R gõ sysdm.cpl chọn tab "Advanced" chọn tiếp Environment Variables
+Ở "System variables" chọn "New" set name là PYTHONUTF8 còn value là 1
 
 ```sh
 pip install pre-commit
