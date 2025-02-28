@@ -68,6 +68,29 @@
                     <div class="nav-item-wrapper">
                         <a
                             class="nav-link label-1"
+                            hx-get="{% url 'activities:test-telesales' %}"
+                            hx-target="#nav-content"
+                            hx-swap="innerHTML"
+                            hx-trigger="click"
+                            role="button"
+                            data-bs-toggle=""
+                            aria-expanded="false"
+                            :class="{ 'active': activeTab === 'test-telesales' }"
+                            @click="activeTab = 'test-telesales'"
+                        >
+                            <div class="d-flex align-items-center">
+                                <span class="nav-link-icon">
+                                    <span class="fa-solid fa-phone-volume"> </span>
+                                </span>
+                                <span class="nav-link-text-wrapper">
+                                    <span class="nav-link-text"> Test Telesales </span>
+                                </span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="nav-item-wrapper">
+                        <a
+                            class="nav-link label-1"
                             hx-get="{% url 'activities:activities-page' %}"
                             hx-target="#nav-content"
                             hx-swap="innerHTML"
