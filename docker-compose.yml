@@ -11,22 +11,26 @@ services:
       - "8000:8000"
     depends_on:
       - db 
-    env_file:
-      - .env 
+    environment:
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+      MYSQL_HOST: "${MYSQL_HOST}"
+      MYSQL_PORT: "${MYSQL_PORT}"
 
   db:
-      image: mysql:8
-      container_name: mysql_db
-      restart: always
-      environment:
-        MYSQL_DATABASE: "${MYSQL_DATABASE}"
-        MYSQL_USER: "${MYSQL_USER}"
-        MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
-        MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
-      ports:
-        - "3307:3306"
-      volumes:
-        - mysql_data:/var/lib/mysql
+    image: mysql:8
+    container_name: mysql_db
+    restart: always
+    ports:
+      - "3306:${MYSQL_PORT}"
+    volumes:
+      - mysql_data:/var/lib/mysql
+    environment:
+      MYSQL_DATABASE: "${MYSQL_DATABASE}"
+      MYSQL_USER: "${MYSQL_USER}"
+      MYSQL_PASSWORD: "${MYSQL_PASSWORD}"
+      MYSQL_ROOT_PASSWORD: "${MYSQL_ROOT_PASSWORD}"
 
 volumes:
   mysql_data:

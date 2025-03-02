@@ -1,6 +1,5 @@
 {% extends 'layout/base.html' %}
 {% block title %}TelesalesV2{% endblock %}
-hx-get="{% url 'activities:filter-activities' %}"
 {% load humanize %}
 {% block content %}
 
@@ -90,41 +89,39 @@ hx-get="{% url 'activities:filter-activities' %}"
                 <table class="table table-sm fs-9 mb-0">
                     <thead>
                         <tr>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">STT</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Chọn</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Ngày tạo</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Di động</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">SĐT Ref 1</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">SĐT Ref 2</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Spouse phone</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Add phone 1</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Add phone 2</th>
-
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Nhân viên phụ trách
-                            </th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Số hợp đồng</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">ID Hợp đồng</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Nguồn gọi</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">fkKH</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Tiêu đề</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Số CMND</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Tên KH</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Total Overdue</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Tensor</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">PRODUCT GROUP</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Địa chỉ đầy đủ</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Quận/huyện</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Tỉnh/TP</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Trạng thái gọi</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Thời gian gọi lại</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Kết quả gọi</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Lý do gọi</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Thời gian chỉ định</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Date final</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Last action time</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Last action code</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Last remark</th>
-                            <th class="sort border-top border-translucent ps-3" data-sort="name">Nguồn</th>
+                            <th class="border-top border-translucent ps-3">STT</th>
+                            <th class="border-top border-translucent ps-3">Chọn</th>
+                            <th class="border-top border-translucent ps-3">Ngày tạo</th>
+                            <th class="border-top border-translucent ps-3">Di động</th>
+                            <th class="border-top border-translucent ps-3">SĐT Ref 1</th>
+                            <th class="border-top border-translucent ps-3">SĐT Ref 2</th>
+                            <th class="border-top border-translucent ps-3">Spouse phone</th>
+                            <th class="border-top border-translucent ps-3">Add phone 1</th>
+                            <th class="border-top border-translucent ps-3">Add phone 2</th>
+                            <th class="border-top border-translucent ps-3">Nhân viên phụ trách</th>
+                            <th class="border-top border-translucent ps-3">Số hợp đồng</th>
+                            <th class="border-top border-translucent ps-3">ID Hợp đồng</th>
+                            <th class="border-top border-translucent ps-3">Nguồn gọi</th>
+                            <th class="border-top border-translucent ps-3">fkKH</th>
+                            <th class="border-top border-translucent ps-3">Tiêu đề</th>
+                            <th class="border-top border-translucent ps-3">Số CMND</th>
+                            <th class="border-top border-translucent ps-3">Tên KH</th>
+                            <th class="border-top border-translucent ps-3">Total Overdue</th>
+                            <th class="border-top border-translucent ps-3">Tensor</th>
+                            <th class="border-top border-translucent ps-3">PRODUCT GROUP</th>
+                            <th class="border-top border-translucent ps-3">Địa chỉ đầy đủ</th>
+                            <th class="border-top border-translucent ps-3">Quận/huyện</th>
+                            <th class="border-top border-translucent ps-3">Tỉnh/TP</th>
+                            <th class="border-top border-translucent ps-3">Trạng thái gọi</th>
+                            <th class="border-top border-translucent ps-3">Thời gian gọi lại</th>
+                            <th class="border-top border-translucent ps-3">Kết quả gọi</th>
+                            <th class="border-top border-translucent ps-3">Lý do gọi</th>
+                            <th class="border-top border-translucent ps-3">Thời gian chỉ định</th>
+                            <th class="border-top border-translucent ps-3">Date final</th>
+                            <th class="border-top border-translucent ps-3">Last action time</th>
+                            <th class="border-top border-translucent ps-3">Last action code</th>
+                            <th class="border-top border-translucent ps-3">Last remark</th>
+                            <th class="border-top border-translucent ps-3">Nguồn</th>
 
                         </tr>
                     </thead>

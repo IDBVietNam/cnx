@@ -44,11 +44,10 @@ def telesales(request):
     if assigned_agent:
         sales = sales.filter(assigned_agent__icontains=assigned_agent)
 
-    per_page = 1
-    page_number = request.GET.get("page", 1)  # Lấy số trang từ URL
+    items_per_page = 1
+    page_number = request.GET.get("page", 1)
 
-    # Tạo Paginator
-    paginator = Paginator(sales, per_page)
+    paginator = Paginator(sales, items_per_page)
     page_obj = paginator.get_page(page_number)
 
     context = {

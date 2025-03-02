@@ -83,10 +83,6 @@ To maintain code quality and consistency, we use pre-commit hooks. Follow these 
 
 1. Install `pre-commit`:
 
-Cách fix cái djhtml
-Nhấn Window + R gõ sysdm.cpl chọn tab "Advanced" chọn tiếp Environment Variables
-Ở "System variables" chọn "New" set name là PYTHONUTF8 còn value là 1
-
 ```sh
 pip install pre-commit
 ```
@@ -96,6 +92,11 @@ pip install pre-commit
 ```sh
 pre-commit install
 ```
+
+3. Notes
+You may get errors with window.
+Press Windows + R, type sysdm.cpl, select the "Advanced" tab, and then select "Environment Variables".
+In "System variables", select "New", set the name to PYTHONUTF8, and the value to 1.
 
 ## Deployment
 
