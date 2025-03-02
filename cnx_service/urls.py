@@ -26,4 +26,5 @@ urlpatterns = [
     path("campaign/", include("campaign.urls")),
     path("activities/", include("activities.urls")),
     path("base/", include("base.urls")),
+    path("user/", include("user.urls")),
 ]

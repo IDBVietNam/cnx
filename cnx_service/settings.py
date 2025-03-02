@@ -40,11 +40,15 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "django.contrib.humanize",
     "phoenix_example",
+    # apps
     "home",
     "telesalesv2",
     "activities",
     "base",
     "campaign",
+    "user",
+    # 3rd party
+    "django_filters",
 ]
 
 MIDDLEWARE = [
@@ -54,6 +58,7 @@ MIDDLEWARE = [
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.middleware.locale.LocaleMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
+    "cnx_service.middleware.auth_middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
@@ -153,3 +158,8 @@ TIME_ZONE = "Asia/Ho_Chi_Minh"
 USE_I18N = True
 USE_L10N = True
 USE_TZ = False
+
+AUTH_USER_MODEL = "user.CustomUser"
+LOGIN_URL = "/user/login/"
+LOGIN_REDIRECT_URL = "/home/"
+LOGOUT_REDIRECT_URL = "/user/login/"

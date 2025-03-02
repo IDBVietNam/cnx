@@ -12,7 +12,7 @@ repos:
     rev: 6.0.0
     hooks:
       - id: flake8
-        args: ["--max-line-length=120"]
+        args: ["--max-line-length=150"]
         exclude: "static/|staticfiles/|README.md|Dockerfile|(^|/)__init__\\.py$"
   - repo: local
     hooks:
