@@ -47,7 +47,7 @@ INSTALLED_APPS = [
     "user",
     # 3rd party
     "django_filters",
-    'callsource',
+    "callsource",
 ]
 
 MIDDLEWARE = [
