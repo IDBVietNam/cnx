@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "customer",
     # 3rd party
     "django_filters",
+    "callsource",
 ]
 
 MIDDLEWARE = [
@@ -164,3 +165,6 @@ AUTH_USER_MODEL = "user.CustomUser"
 LOGIN_URL = "/user/login/"
 LOGIN_REDIRECT_URL = "/home/"
 LOGOUT_REDIRECT_URL = "/user/login/"
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.path.join(BASE_DIR, "media")
