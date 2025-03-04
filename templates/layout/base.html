@@ -102,7 +102,7 @@
                                 <div
                                     x-show="showClose"
                                     x-transition
-                                    @click="$store.tabs.removeTab(tab.id)"
+                                    x-on:click="$store.tabs.removeTab(tab.id)"
                                     class="fa fa-times fa-xs btn-close position-absolute"
                                     style="top: 2px; right: 6px; cursor: pointer; z-index: 1000;"
                                     aria-hidden="true"
