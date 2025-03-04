@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     "activities",
     "base",
     "campaign",
+    "user",
+    # 3rd party
+    "django_filters",
 ]
 
 MIDDLEWARE = [
@@ -135,3 +138,8 @@ STATIC_URL = "/static/"
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
+
+AUTH_USER_MODEL = "user.CustomUser"
+LOGIN_URL = "/user/login/"
+LOGIN_REDIRECT_URL = "/home/"
+LOGOUT_REDIRECT_URL = "/user/login/"

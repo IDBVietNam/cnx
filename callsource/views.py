@@ -10,7 +10,6 @@ from callsource.models import CallSource, HistoryCallSource
 from cnx_service import settings
 
 
-# Create your views here.
 def callsource(request: HttpRequest) -> HttpResponse:
     if not request.headers.get("HX-Request"):
         return redirect("base:404")
@@ -50,22 +49,17 @@ def upload_csv(request):
         if form.is_valid():
             file = request.FILES["file"]
             callsource_id = form.cleaned_data["callsource_id"]
-            print("start")
-            # Lấy CallSource từ database
             try:
                 callsource = CallSource.objects.get(id=callsource_id)
-                print("CallSource object:", callsource)  # Debug
             except CallSource.DoesNotExist:
                 return JsonResponse(
                     {"success": False, "error": "CallSource not found"}, status=400
                 )
             file_path = os.path.join(settings.MEDIA_ROOT, "uploads", file.name)
-            # Lưu file vào thư mục media/uploads/
             os.makedirs(os.path.dirname(file_path), exist_ok=True)
             with open(file_path, "wb+") as destination:
                 for chunk in file.chunks():
                     destination.write(chunk)
-            print(file_path)
             try:
                 if file.name.endswith(".csv"):
                     df = pd.read_csv(file_path)
@@ -90,7 +84,6 @@ def upload_csv(request):
                 callsource.save()
                 failed_uploads = total_rows - valid_mobile_rows
 
-                print("abcs")
                 HistoryCallSource.objects.create(
                     completed_at=timezone.now(),
                     source=callsource,
@@ -103,7 +96,6 @@ def upload_csv(request):
                 )
 
             except Exception as e:
-                print(e)
                 return JsonResponse({"success": False, "error": str(e)}, status=500)
 
             return JsonResponse(
@@ -158,8 +150,6 @@ def update_callsource(request: HttpRequest, callsource_id: int) -> HttpResponse:
             "home/callsource/partials/callsource_list.html",
             {"callsources": callsources},
         )
-
-        # Kích hoạt sự kiện đóng modal
         response["HX-Trigger"] = "closeModal"
 
         return response
