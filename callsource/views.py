@@ -45,7 +45,6 @@ def callsource_create(request):
 def upload_csv(request):
     if request.method == "POST":
         form = UploadCSVForm(request.POST, request.FILES)
-        print("post", request.POST)
         if form.is_valid():
             file = request.FILES["file"]
             callsource_id = form.cleaned_data["callsource_id"]
@@ -69,7 +68,6 @@ def upload_csv(request):
                     return JsonResponse(
                         {"success": False, "error": "Invalid file format"}, status=400
                     )
-                print("DataFrame loaded:\n", df.head())
 
                 total_rows = len(df)
                 valid_mobile_rows = (
