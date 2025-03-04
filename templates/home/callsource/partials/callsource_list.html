@@ -7,8 +7,8 @@
             <th class="sort border-top border-translucent ps-3" data-sort="name">Tên nguồn gọi</th>
             <th class="sort border-top" data-sort="email">Tổng KH</th>
             <th class="sort border-top" data-sort="age">Tạo bởi</th>
-            <th class="border-top">Chỉnh sửa</th> <!-- Cột riêng cho Edit -->
-            <th class="border-top">Xem</th> <!-- Cột riêng cho View -->
+            <th class="border-top">Chỉnh sửa</th>
+            <th class="border-top">Xem</th>
         </tr>
     </thead>
     <tbody>
@@ -21,10 +21,21 @@
                 <td class="email">{{ callsource.total_customers }}</td>
                 <td class="age">{{ callsource.create_by }}</td>
                 <td>
-                    <a href="{}" class="text-primary text-decoration-none">Edit</a>
+                    <a hx-get="{% url 'callsources:editcallsource' callsource.id %}"
+                       hx-target="#modal-container"
+                       hx-swap="innerHTML"
+                       hx-trigger="click"
+                       class="text-primary text-decoration-none">
+                        Edit
+                    </a>
+
                 </td>
                 <td>
-                    <a href="{}" class="text-primary text-decoration-none">View</a>
+                    <a hx-get="{% url 'callsources:historycallsource' callsource.id %}"
+                       hx-target="#modal-container"
+                       hx-swap="innerHTML"
+                       hx-trigger="click"
+                       class="text-primary text-decoration-none">View</a>
                 </td>
             </tr>
         {% empty %}

@@ -27,3 +27,19 @@ class CallSource(BaseModel):
         verbose_name = "CallSource"
         verbose_name_plural = "CallSources"
         db_table = "call_source"
+
+
+class HistoryCallSource(BaseModel):
+    completed_at = models.DateTimeField(null=True, blank=True)
+    uploader = models.CharField(max_length=255)
+    source = models.ForeignKey(
+        CallSource, on_delete=models.CASCADE, related_name="history_sources"
+    )
+    status = models.CharField(max_length=50)
+    total_uploaded = models.IntegerField()
+    successful_uploads = models.IntegerField()
+    failed_uploads = models.IntegerField()
+    file_name = models.CharField(max_length=255, verbose_name="Uploaded File")
+
+    class Meta:
+        db_table = "history_call_source"

@@ -1,0 +1,30 @@
+<form
+    id="UploadCSVForm"
+    action="{% url 'callsources:upload_csv' %}"
+    method="post"
+    enctype="multipart/form-data"
+    hx-post="{% url 'callsources:upload_csv' %}"
+    hx-on::after-request="handleUploadResponse(event)">
+
+    {% csrf_token %}
+    <label for="file">Chọn file CSV:</label>
+    {{ form.file }}
+
+    <label for="callsource_id">Chọn nguồn gọi:</label>
+    <select name="callsource_id" required>
+        {% for callsource in callsources %}
+            <option value="{{ callsource.id }}">{{ callsource.name_call_source }}</option>
+        {% endfor %}
+    </select>
+    <button type="submit">Upload CSV</button>
+</form>
+
+<script>
+    function handleUploadResponse(event) {
+        if (event.detail.success) {
+            alert("File uploaded successfully!");
+        } else {
+            alert("Upload failed: " + JSON.stringify(event.detail.errors));
+        }
+    }
+</script>
