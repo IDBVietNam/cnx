@@ -2,7 +2,7 @@
 <script defer src="{% static 'alpinejs/min.js' %}"></script>
 
 
-<div id="activities-table">
+<div id="activityTableTab" x-show.transition.in.opacity.duration.600="$store.tabs.current === 'activityTableTab'">
     <div class="row p-3">
         <form class="row gy-2 gx-3 align-items-center"
               hx-get="{% url 'activities:filter-activities' %}"
@@ -42,7 +42,7 @@
             </div>
         </form>
     </div>
-    <div id="activities-table" x-data="{ currentPage: {{ current_page }}, totalPages: {{ total_pages }}, perPage: {{ per_page }}}">
+    <div  x-data="{ currentPage: {{ current_page }}, totalPages: {{ total_pages }}, perPage: {{ per_page }}}">
         <div class="table-responsive" id="activities-list">
             {% include "home/activities/partials/activities_table.html" %}
         </div>

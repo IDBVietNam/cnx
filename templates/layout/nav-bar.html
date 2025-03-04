@@ -73,13 +73,19 @@
                             class="nav-link label-1"
                             hx-get="{% url 'activities:test-telesales' %}"
                             hx-target="#nav-content"
-                            hx-swap="innerHTML"
-                            hx-trigger="click"
+                            hx-swap="beforeend"
+                            hx-trigger="trigger-telesales"
                             role="button"
                             data-bs-toggle=""
                             aria-expanded="false"
                             :class="{ 'active': activeTab === 'test-telesales' }"
-                            @click="activeTab = 'test-telesales'"
+                            @click="
+                                    const tabsStore =$store.tabs;
+                                    if (!tabsStore.tabExisted('telesaleTab')) {
+                                    $dispatch('trigger-telesales');
+                                    $store.tabs.add({ id: 'telesaleTab', name: 'Telesales' });
+                                    }
+                                   "
                         >
                             <div class="d-flex align-items-center">
                                 <span class="nav-link-icon">
@@ -93,16 +99,24 @@
                     </div>
                     <div class="nav-item-wrapper">
                         <a
+                            x-data
                             class="nav-link label-1"
                             hx-get="{% url 'activities:activities-page' %}"
                             hx-target="#nav-content"
-                            hx-swap="innerHTML"
-                            hx-trigger="click"
+                            hx-swap="beforeend"
+                            hx-trigger="trigger-activity"
+
+                            @click="
+                                    const tabsStore =$store.tabs;
+                                    if (!tabsStore.tabExisted('activityTableTab')) {
+                                    $dispatch('trigger-activity');
+                                    $store.tabs.add({ id: 'activityTableTab', name: 'Activities' });
+                                    }
+                                   "
                             role="button"
                             data-bs-toggle=""
                             aria-expanded="false"
                             :class="{ 'active': activeTab === 'activities' }"
-                            @click="activeTab = 'activities'"
                         >
                             <div class="d-flex align-items-center">
                                 <span class="nav-link-icon">
@@ -159,13 +173,22 @@
                             </li>
                             <li class="nav-item">
                                 <a
+                                    x-data
                                     class="nav-link "
                                     hx-get="{% url 'campaign:manage-telesales-campaign' %}"
                                     hx-target="#nav-content"
-                                    hx-swap="innerHTML"
-                                    hx-trigger="click"
+                                    hx-swap="beforeend"
+                                    hx-trigger="trigger-campaign"
+
                                     :class="{ 'active': activeTab === 'compaign' }"
-                                    @click="activeTab = 'compaign'"
+
+                                    @click="
+                                            const tabsStore =$store.tabs;
+                                            if (!tabsStore.tabExisted('campaignTab')) {
+                                            $dispatch('trigger-campaign');
+                                            $store.tabs.add({ id: 'campaignTab', name: 'Chiến Dịch' });
+                                            }
+                                           "
                                     id="customer-info"
                                 >
                                     <div class="d-flex align-items-center">
