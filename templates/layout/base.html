@@ -83,12 +83,39 @@
             {% include "./nav-bar.html" %}
             {% include "./top-bar.html" %}
             <div class="content">
-                <div>
-                    <div class="row g-5" id="nav-content">
-                        {% block content %}
-                            {% block subcontent %}{% endblock %}
-                        {% endblock %}
+                <div class="tab-wrapper row" x-data="{ activeTab:  0 , count: 0}">
+                    <div class="d-flex w-1 border-bottom border-secondary border-2">
+                        <template x-for="tab in $store.tabs.items" :key="tab.id">
+                            <div
+                                x-data="{ showClose: false }"
+                                @mouseleave="showClose = false"
+                                @mouseenter="showClose = true"
+                                @click="$store.tabs.setCurrent(tab.id)"
+                                style="width: fit-content;"
+                                class="position-relative tab-control rounded-top px-5 py-2 border-dark"
+                                :class="{ 'border border-bottom-0': $store.tabs.current == tab.id, 'border-transparent': $store.tabs.current !== tab.id }"
+                            >
+                              <!-- Tab Label -->
+                                <label x-text="tab.name"></label>
+
+                              <!-- Close Button -->
+                                <div
+                                    x-show="showClose"
+                                    x-transition
+                                    @click="$store.tabs.removeTab(tab.id)"
+                                    class="fa fa-times fa-xs btn-close position-absolute"
+                                    style="top: 2px; right: 6px; cursor: pointer; z-index: 1000;"
+                                    aria-hidden="true"
+                                ></div>
+                            </div>
+                        </template>
+
                     </div>
+                </div>
+                <div id="nav-content">
+                    {% block content %}
+                        {% block subcontent %}{% endblock %}
+                    {% endblock %}
                 </div>
                 {% include "./footer.html" %}
             </div>
@@ -133,6 +160,7 @@
         <script src="{% static 'phoenix/assets/js/ecommerce-dashboard.js' %}"></script>
         <script src="{% static 'phoenix/vendors/choices/choices.min.js' %}"></script>
         <script src="{% static 'phoenix/vendors/dropzone/dropzone-min.js' %}"></script>
+        <script src="{% static 'shared/globalAlpineStore.js' %}"></script>
         {% block addonjs %} {% endblock %}
     </body>
 
