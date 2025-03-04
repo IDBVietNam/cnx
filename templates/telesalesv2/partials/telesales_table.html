@@ -1,0 +1,161 @@
+{% load humanize %}
+<table class="table table-sm fs-9 mb-0">
+    <thead>
+        <tr>
+            <th class="border-top border-translucent ps-3">Chọn</th>
+            <th class="border-top border-translucent ps-3">Ngày tạo</th>
+            <th class="border-top border-translucent ps-3">Di động</th>
+            <th class="border-top border-translucent ps-3">SĐT Ref 1</th>
+            <th class="border-top border-translucent ps-3">SĐT Ref 2</th>
+            <th class="border-top border-translucent ps-3">Spouse phone</th>
+            <th class="border-top border-translucent ps-3">Add phone 1</th>
+            <th class="border-top border-translucent ps-3">Add phone 2</th>
+            <th class="border-top border-translucent ps-3">Nhân viên phụ trách</th>
+            <th class="border-top border-translucent ps-3">Số hợp đồng</th>
+            <th class="border-top border-translucent ps-3">ID Hợp đồng</th>
+            <th class="border-top border-translucent ps-3">Nguồn gọi</th>
+            <th class="border-top border-translucent ps-3">fkKH</th>
+            <th class="border-top border-translucent ps-3">Tiêu đề</th>
+            <th class="border-top border-translucent ps-3">Số CMND</th>
+            <th class="border-top border-translucent ps-3">Tên KH</th>
+            <th class="border-top border-translucent ps-3">Total Overdue</th>
+            <th class="border-top border-translucent ps-3">Tensor</th>
+            <th class="border-top border-translucent ps-3">PRODUCT GROUP</th>
+            <th class="border-top border-translucent ps-3">Địa chỉ đầy đủ</th>
+            <th class="border-top border-translucent ps-3">Quận/huyện</th>
+            <th class="border-top border-translucent ps-3">Tỉnh/TP</th>
+            <th class="border-top border-translucent ps-3">Trạng thái gọi</th>
+            <th class="border-top border-translucent ps-3">Thời gian gọi lại</th>
+            <th class="border-top border-translucent ps-3">Kết quả gọi</th>
+            <th class="border-top border-translucent ps-3">Lý do gọi</th>
+            <th class="border-top border-translucent ps-3">Thời gian chỉ định</th>
+            <th class="border-top border-translucent ps-3">Date final</th>
+            <th class="border-top border-translucent ps-3">Last action time</th>
+            <th class="border-top border-translucent ps-3">Last action code</th>
+            <th class="border-top border-translucent ps-3">Last remark</th>
+            <th class="border-top border-translucent ps-3">Nguồn</th>
+
+        </tr>
+    </thead>
+    <tbody class="list">
+        {% for telesale in telesales %}
+            <tr>
+                <td class="align-middle">
+                    <button class="btn btn-primary me-1 mb-1 p-1 d-flex align-items-center" type="button">
+                        <span class="d-inline-flex align-items-center text-nowrap gap-2">
+                            <i class="fa-solid fa-up-right-from-square"></i> Load Call
+                        </span>
+                    </button>
+                </td>
+
+                <td class="align-middle">{{telesale.created_at|date:"m-d-Y H:i:s"}}</td>
+
+                <td class="align-middle">{% if telesale.mobile_number %}<button
+                    class="btn btn-primary me-1 mb-1 p-1 d-flex align-items-center" type="button"><span
+                        class="d-inline-flex align-items-center text-nowrap gap-2 ">
+                        <i class="fa-solid fa-phone"></i> {{ telesale.mobile_number }}
+                    </span></button>{% endif %}</td>
+
+                <td class="align-middle">{% if telesale.reference_phone_1 %}<button
+                    class="btn btn-primary me-1 mb-1 p-1 d-flex align-items-center" type="button"><span
+                        class="d-inline-flex align-items-center text-nowrap gap-2">
+                        <i class="fa-solid fa-phone"></i> {{telesale.reference_phone_1}}
+                    </span></button>{% endif %}</td>
+
+                <td class="align-middle">{% if telesale.reference_phone_2 %}<button
+                    class="btn btn-primary me-1 mb-1 p-1 d-flex align-items-center" type="button"><span
+                        class="d-inline-flex align-items-center text-nowrap gap-2">
+                        <i class="fa-solid fa-phone"></i> {{telesale.reference_phone_2}}
+                    </span></button>{% endif %}</td>
+
+                <td class="align-middle">{% if telesale.spouse_phone %}<button class="btn btn-primary
+                                                                                      me-1 mb-1 p-1 d-flex align-items-center" type="button"><span
+                    class="d-inline-flex align-items-center text-nowrap gap-2">
+                    <i class="fa-solid fa-phone"></i> {{telesale.spouse_phone}}
+                </span></button>{% endif %}</td>
+
+                <td class="align-middle">{% if telesale.additional_phone_1 %}<button
+                    class="btn btn-primary me-1 mb-1 p-1 d-flex align-items-center" type="button"><span
+                        class="d-inline-flex align-items-center text-nowrap gap-2">
+                        <i class="fa-solid fa-phone"></i> {{telesale.additional_phone_1}}
+                    </span></button>{% endif %}</td>
+
+                <td class="align-middle">{% if telesale.additional_phone_2 %}<button
+                    class="btn btn-primary me-1 mb-1 p-1 d-flex align-items-center" type="button"><span
+                        class="d-inline-flex align-items-center text-nowrap gap-2">
+                        <i class="fa-solid fa-phone"></i> {{telesale.additional_phone_2}}
+                    </span></button>{% endif %}</td>
+
+                <td class="align-middle">{{telesale.assigned_agent}}</td>
+                <td class="align-middle">{{telesale.contract_number}}</td>
+                <td class="align-middle">{{telesale.contract_info}}</td>
+                <td class="align-middle">{{telesale.call_source}}</td>
+                <td class="align-middle">{{telesale.customer_code}}</td>
+                <td class="align-middle">{{telesale.title}}</td>
+                <td class="align-middle">{{telesale.id_card_number}}</td>
+                <td class="align-middle">{{telesale.customer_name}}</td>
+                <td class="align-middle">{{telesale.total_overdue|intcomma}}</td>
+
+                <td class="align-middle">{{telesale.tenor}}</td>
+                <td class="align-middle">{{telesale.product_group}}</td>
+                <td class="align-middle">{{telesale.full_address}}</td>
+                <td class="align-middle">{{telesale.district}}</td>
+                <td class="align-middle">{{telesale.city}}</td>
+                <td class="align-middle">{{telesale.call_status}}</td>
+                <td class="align-middle">{{telesale.recall_time|date:"Y-m-d H:i:s"}}</td>
+                <td class="align-middle">{{telesale.call_result}}</td>
+                <td class="align-middle">{{telesale.call_reason}}</td>
+                <td class="align-middle">{{telesale.scheduled_time|date:"Y-m-d H:i:s"}}</td>
+                <td class="align-middle">{{telesale.date_final|date:"Y-m-d H:i:sP"}}</td>
+                <td class="align-middle">{{telesale.last_action_time|date:"Y-m-d H:i:s"}}</td>
+                <td class="align-middle">{{telesale.last_action_code}}</td>
+                <td class="align-middle">{{telesale.last_remark}}</td>
+                <td class="align-middle">{{telesale.call_source_uuid}}</td>
+
+
+                <td class="align-middle white-space-nowrap text-end pe-0">
+                    <div class="btn-reveal-trigger position-static">
+                        <button
+                            class="btn btn-sm dropdown-toggle dropdown-caret-none transition-none btn-reveal fs-10"
+                            type="button"
+                            data-bs-toggle="dropdown"
+                            data-boundary="window"
+                            aria-haspopup="true"
+                            aria-expanded="false"
+                            data-bs-reference="parent">
+                            <svg
+                                class="svg-inline--fa fa-ellipsis fs-10"
+                                aria-hidden="true"
+                                focusable="false"
+                                data-prefix="fas"
+                                data-icon="ellipsis"
+                                role="img"
+                                xmlns="http://www.w3.org/2000/svg"
+                                viewBox="0 0 448 512"
+                                data-fa-i2svg=""
+                            >
+                                <path
+                                    fill="currentColor"
+                                    d="M8 256a56 56 0 1 1 112 0A56 56 0 1 1 8 256zm160 0a56 56 0 1 1 112 0 56 56 0 1 1 -112 0zm216-56a56 56 0 1 1 0 112 56 56 0 1 1 0-112z">
+                                </path>
+                            </svg>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end py-2">
+                            <a class="dropdown-item" href="#!">View</a>
+                            <a class="dropdown-item" href="#!">Export</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item text-danger"href="#!">Remove</a>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        {% empty %}
+            <tr>
+                <td colspan="15" class="text-center fw-bold align-middle">
+                    Không có dữ liệu
+                </td>
+            </tr>
+
+        {% endfor %}
+    </tbody>
+</table>

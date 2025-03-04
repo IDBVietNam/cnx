@@ -2,7 +2,7 @@ from django.core.paginator import EmptyPage, Paginator
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 
-from activities.filters import ActivityFilter
+from activities.filters import ActivitiesFilter
 from activities.models import Activities
 
 
@@ -18,7 +18,7 @@ def filter_activities(request: HttpRequest) -> HttpResponse:
     to_date = request.GET.get("to_date", "")
 
     # Apply filtering
-    activity_filter = ActivityFilter(request.GET, queryset=Activities.objects.all())
+    activities_filter = ActivitiesFilter(request.GET, queryset=Activities.objects.all())
 
     try:
         page_number = int(request.GET.get("page", 1))
@@ -27,7 +27,7 @@ def filter_activities(request: HttpRequest) -> HttpResponse:
     except ValueError:
         page_number = 1  # Default to 1 if invalid
 
-    paginator = Paginator(activity_filter.qs, int(per_page))
+    paginator = Paginator(activities_filter.qs, int(per_page))
 
     try:
         page_obj = paginator.get_page(page_number)
@@ -35,7 +35,7 @@ def filter_activities(request: HttpRequest) -> HttpResponse:
         page_obj = paginator.get_page(1)
     return render(
         request,
-        "home/activities/partials/activities_list.html",
+        "home/activities/partials/activities_table.html",
         {
             "activities": page_obj,
             "current_page": page_obj.number,
@@ -54,12 +54,12 @@ def activities(request: HttpRequest) -> HttpResponse:
     if not request.headers.get("HX-Request"):
         return redirect("base:404")
 
-    activity_filter = ActivityFilter(request.GET, queryset=Activities.objects.all())
+    activities_filter = ActivitiesFilter(request.GET, queryset=Activities.objects.all())
 
     page_number = request.GET.get("page", 1)
     per_page = request.GET.get("per_page", 10)
 
-    paginator = Paginator(activity_filter.qs, per_page)
+    paginator = Paginator(activities_filter.qs, per_page)
     page_obj = paginator.get_page(page_number)
 
     return render(
@@ -70,7 +70,7 @@ def activities(request: HttpRequest) -> HttpResponse:
             "current_page": page_obj.number,
             "total_pages": paginator.num_pages,
             "per_page": per_page,
-            "filter": activity_filter,  # Pass filter for UI
+            "filter": activities_filter,  # Pass filter for UI
         },
     )
 

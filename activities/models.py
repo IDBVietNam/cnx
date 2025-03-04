@@ -28,3 +28,4 @@ class Activities(BaseModel):
     class Meta:
         verbose_name = "Activity"
         verbose_name_plural = "Activities"
+        ordering = ["date_created"]
