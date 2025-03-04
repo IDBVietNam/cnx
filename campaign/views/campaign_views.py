@@ -31,8 +31,25 @@ def manage_telesales_campaign(request: HttpRequest) -> HttpResponse:
         },
         {"id": "phone-info", "label": "Phone Info", "url": "campaign:phone-info-form"},
     ]
+    right_tabs = [
+        {
+            "id": "call-outcome",
+            "label": "Call Outcome",
+            "url": "campaign:call-outcome-form",
+        },
+        {
+            "id": "history-all",
+            "label": "History All",
+            "url": "campaign:history-all-form",
+        },
+        {
+            "id": "history-limit",
+            "label": "History Limit",
+            "url": "campaign:history-limit-form",
+        },
+    ]
     return render(
         request,
         "home/manage_telesales/campaign.html",
-        {"active": "manage_telesales_campaign", "tabs": tabs},
+        {"active": "manage_telesales_campaign", "tabs": tabs, "right_tabs": right_tabs},
     )

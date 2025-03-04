@@ -5,8 +5,6 @@ on:
     branches: [ "main" ]
     types:
       - closed
-  push:
-    branches: [ "main" ]
 
 jobs:
   deploy_if_merged:
@@ -24,6 +22,10 @@ jobs:
     - name: Stop and Remove Old Containers
       run: |
         docker-compose -f staging.yml down || true
+
+    - name: Remove Old Docker Images
+      run: |
+        docker image prune -af
 
     - name: Build and Start Containers
       run: |

@@ -26,4 +26,5 @@ urlpatterns = [
     path("activities/", include("activities.urls")),
     path("base/", include("base.urls")),
     path("callsources/", include("callsource.urls")),
+    path("user/", include("user.urls")),
 ]
