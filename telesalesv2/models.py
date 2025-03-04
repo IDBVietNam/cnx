@@ -2,8 +2,10 @@ import uuid
 
 from django.db import models
 
+from cnx_service.model import BaseModel
 
-class TelesalesV2(models.Model):
+
+class TelesalesV2(BaseModel):
     CALL_STATUS_CHOICES = [
         ("new", "New"),
         ("follow1", "Follow1"),
@@ -23,8 +25,6 @@ class TelesalesV2(models.Model):
         ("sister", "Sister"),
         ("spouse", "Spouse"),
     ]
-    created_at = models.DateTimeField(auto_now_add=True, verbose_name="Ngày tạo")
-    mobile_number = models.CharField(max_length=15, blank=True, verbose_name="Di động")
     reference_phone_1 = models.CharField(
         max_length=15, blank=True, verbose_name="SĐT Ref 1"
     )

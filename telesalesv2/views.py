@@ -1,9 +1,52 @@
-from django.core.paginator import Paginator
+from django.core.paginator import EmptyPage, Paginator
 from django.db.models import CharField
 from django.db.models.functions import Cast
-from django.shortcuts import render
+from django.http import HttpRequest, HttpResponse
+from django.shortcuts import redirect, render
 
+from .filters import TelesalesV2Filter
 from .models import TelesalesV2
+
+
+def filter_telesales(request: HttpRequest) -> HttpResponse:
+    if not request.headers.get("HX-Request"):
+        return redirect("base:404")
+
+    default_items_per_page = 10
+
+    telesalesV2_filter = TelesalesV2Filter(
+        request.GET, queryset=TelesalesV2.objects.all()
+    )
+
+    default_page_number = 1
+    try:
+        page_number = int(request.GET.get("page", 1))
+        if page_number < 1:
+            page_number = 1
+    except ValueError:
+        page_number = default_page_number
+
+    paginator = Paginator(telesalesV2_filter.qs, default_items_per_page)
+
+    try:
+        page_obj = paginator.get_page(page_number)
+    except EmptyPage:
+        page_obj = paginator.get_page(1)
+
+    return render(
+        request,
+        "telesalesv2/partials/telesales_table.html",
+        {
+            "telesales": page_obj,
+            "current_page": page_obj.number,
+            "total_pages": paginator.num_pages,
+            # "contract_number": contract_number,
+            # "action_code": action_code,
+            # "contacted_person": contacted_person,
+            # "from_date": from_date,
+            # "to_date": to_date,
+        },
+    )
 
 
 def telesales(request):
@@ -51,7 +94,7 @@ def telesales(request):
     page_obj = paginator.get_page(page_number)
 
     context = {
-        "sales": page_obj.object_list,
+        "telesales": page_obj,
         "page_obj": page_obj,
         "CALL_STATUS_CHOICES": TelesalesV2.CALL_STATUS_CHOICES,
         "CALL_RESULT_CHOICES": TelesalesV2.CALL_RESULT_CHOICES,

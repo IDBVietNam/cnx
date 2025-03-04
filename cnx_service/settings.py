@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "base",
     "campaign",
     "user",
+    "customer",
     # 3rd party
     "django_filters",
 ]
