@@ -9,9 +9,16 @@ document.addEventListener('alpine:init', () => {
             this.setCurrent(tab.id);
         },        
         setCurrent(id) {
+            if (!id) {
+                this.current = ''
+                return
+            }
             this.current = this.items.find(item => item.id === id).id
         },
         removeTab (id) {
+            if (!id) {
+                return
+            }
             let itemIndex = 0;
             const element = document.getElementById(id);
             element.remove();
