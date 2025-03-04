@@ -27,6 +27,10 @@ repos:
     hooks:
       - id: djhtml
         entry: djhtml --tabwidth 4
+  # - repo: https://github.com/ecugol/pre-commit-hooks-django
+  #   rev: v0.4.0
+  #   hooks:
+  #   -   id: check-absent-migrations
   - repo: local
     hooks:
       - id: check-print-statements

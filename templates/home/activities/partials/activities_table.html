@@ -1,0 +1,92 @@
+<table class="table table-striped table-sm fs-9 mb-0">
+    <thead>
+        <tr>
+            <th class="border-top border-translucent ps-3">Số Hợp Đống</th>
+            <th class="border-top">Call ID</th>
+            <th class="border-top">Tên Khách Hàng</th>
+            <th class="text-end align-middle pe-0 border-top" scope="col">Agent</th>
+            <th class="text-end align-middle pe-0 border-top" scope="col">Thời gian Tạo</th>
+            <th class="text-end align-middle pe-0 border-top" scope="col">Thời gian chỉnh Sửa</th>
+            <th class="text-end align-middle pe-0 border-top" scope="col">Người liên hệ</th>
+            <th class="text-end align-middle pe-0 border-top" scope="col">ACTION CODE</th>
+            <th class="text-end align-middle pe-0 border-top" scope="col">Ghi chú</th>
+        </tr>
+    </thead>
+    {% for activity in activities %}
+        <tr>
+            <td class="name">{{ activity.contract_number }}</td>
+            <td class="email">{{ activity.call_id }}</td>
+            <td class="age">{{ activity.customer_name }}</td>
+            <td class="text-end">{{ activity.agent }}</td>
+            <td class="text-end">{{ activity.date_created|date:"Y-m-d H:i:s" }}</td>
+            <td class="text-end">{{ activity.date_modified|date:"Y-m-d H:i:s" }}</td>
+            <td class="text-end">{{ activity.contacted_person }}</td>
+            <td class="text-end">{{ activity.action_code }}</td>
+            <td class="text-end">{{ activity.note }}</td>
+        </tr>
+    {% empty %}
+        <tr>
+            <td colspan="9" class="text-center">Không có dữ liệu</td>
+        </tr>
+    {% endfor %}
+</table>
+
+<div class="pagination-container d-flex justify-content-between mt-3">
+<!-- First Page Button -->
+    <button
+        class="page-link"
+        hx-get="{% url 'activities:filter-activities' %}?page=1&per_page={{ per_page }}&contract_number={{ request.GET.contract_number }}&action_code={{ request.GET.action_code }}&contacted_person={{ request.GET.contacted_person }}&from_date={{ request.GET.from_date }}&to_date={{ request.GET.to_date }}"
+        hx-trigger="click"
+        hx-target="#activities-list"
+        hx-swap="innerHTML"
+        hx-push-url="true"
+        @click="currentPage = 1"
+        :class="{ 'disabled': currentPage === 1 }"
+    >
+        First
+    </button>
+
+<!-- Previous Page Button -->
+    <button
+        class="page-link"
+        hx-get="{% url 'activities:filter-activities' %}?page={% if current_page == 1 %}1{% else %}{{ current_page|add:'-1' }}{% endif %}&per_page={{ per_page }}&contract_number={{ request.GET.contract_number }}&action_code={{ request.GET.action_code }}&contacted_person={{ request.GET.contacted_person }}&from_date={{ request.GET.from_date }}&to_date={{ request.GET.to_date }}"
+        hx-trigger="click"
+        hx-target="#activities-list"
+        hx-swap="innerHTML"
+        hx-push-url="true"
+        @click="currentPage = currentPage - 1"
+        :class="{ 'disabled': currentPage === 1 }"
+    >
+        <span class="fas fa-chevron-left"></span>
+    </button>
+
+    <span>Page {{ current_page }} of {{ total_pages }}</span>
+
+<!-- Next Page Button -->
+    <button
+        class="page-link"
+        hx-get="{% url 'activities:filter-activities' %}?page={% if current_page == total_pages %}{{ total_pages }}{% else %}{{ current_page|add:'+1' }}{% endif %}&per_page={{ per_page|default:'10' }}&contract_number={{ request.GET.contract_number|default:'' }}&action_code={{ request.GET.action_code|default:'' }}&contacted_person={{ request.GET.contacted_person|default:'' }}&from_date={{ request.GET.from_date|default:'' }}&to_date={{ request.GET.to_date|default:'' }}"
+        hx-trigger="click"
+        hx-target="#activities-list"
+        hx-swap="innerHTML"
+        hx-push-url="true"
+        @click="currentPage = currentPage + 1"
+        :class="{ 'disabled': currentPage === totalPages }"
+    >
+        <span class="fas fa-chevron-right"></span>
+    </button>
+
+<!-- Last Page Button -->
+    <button
+        class="page-link"
+        hx-get="{% url 'activities:filter-activities' %}?page={{ total_pages }}&per_page={{ per_page }}&contract_number={{ request.GET.contract_number }}&action_code={{ request.GET.action_code }}&contacted_person={{ request.GET.contacted_person }}&from_date={{ request.GET.from_date }}&to_date={{ request.GET.to_date }}"
+        hx-trigger="click"
+        hx-target="#activities-list"
+        hx-swap="innerHTML"
+        hx-push-url="true"
+        @click="currentPage = totalPages"
+        :class="{ 'disabled': currentPage === totalPages }"
+    >
+        Last
+    </button>
+</div>
