@@ -1,0 +1,154 @@
+{% load humanize %}
+<div class="telesalesv2">
+    <div class="row p-3">
+        <form
+            class="row gy-2 gx-3 align-items-center"
+            hx-get="{% url 'telesales:filter-telesales' %}"
+            hx-target="#telesalesv2-list"
+            hx-swap="innerHTML"
+        >
+            <div class="col-auto">
+                <select class="form-select" id="call-source">
+                    <option value="1">Nguồn</option>
+                    <option value="2">10</option>
+                    <option value="3">20</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <div class="input-group">
+                    <input class="form-control" id="call-id" value="{{call_id}}" name="call_id" type="text"
+                           placeholder="Call ID">
+                </div>
+            </div>
+            <div class="col-auto">
+                <input class="form-control" id="contract-info" value="{{contract_info}}" name="contract_info"
+                       type="text" placeholder="ID hợp đồng">
+            </div>
+            <div class="col-auto">
+                <input class="form-control" id="contract-number" value="{{contract_number}}" name="contract_number"
+                       type="text" placeholder="Số hợp đồng">
+            </div>
+            <div class="col-auto">
+                <input class="form-control" id="assigned_agent" value="{{assigned_agent}}" name="assigned_agent"
+                       type="text" placeholder="Nhân viên phụ trách">
+            </div>
+
+        <!-- Dropdown call_status  -->
+            <div class="col-auto">
+                <select class="form-select" id="autoSizingSelect" name="call_status">
+                    <option value="">Trạng thái gọi</option>
+                    {% for value, label in CALL_STATUS_CHOICES %}
+                        <option value="{{ value }}" {% if call_status == value %}selected{% endif %}>{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-auto">
+                <input class="form-control" id="id-card-number" value="{{id_card_number}}" name="id_card_number"
+                       type="text" placeholder="Số CMND">
+            </div>
+            <div class="col-auto">
+                <input class="form-control" id="mobile-number" value="{{mobile_number}}" name="mobile_number"
+                       type="text" placeholder="Di động">
+            </div>
+            <div class="col-auto">
+                <input class="form-control" id="call-reason" value="{{call_reason}}" name="call_reason" type="text"
+                       placeholder="Lý do gọi">
+            </div>
+
+        <!-- Dropdown call_result  -->
+            <div class="col-auto">
+                <select class="form-select" name="call_result">
+                    <option value="1">Kết quả gọi</option>
+                    {% for value, label in CALL_RESULT_CHOICES %}
+                        <option value="{{ value }}">{{ label }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="col-auto">
+                <input class="form-control datetimepicker" id="datepicker-from" name="from_date" type="text" placeholder="Thời gian chỉ định từ ngày" data-options='{"disableMobile":true,"dateFormat":"d/m/Y"}' />
+            </div>
+            <div class="col-auto">
+                <input class="form-control datetimepicker" id="datepicker-to" name="to_date" type="text" placeholder="đến ngày" data-options='{"disableMobile":true,"dateFormat":"d/m/Y"}' />
+            </div>
+
+            <div class="col-auto">
+                <select class="form-select" id="autoSizingSelect">
+                    <option value="1">Active</option>
+                    <option value="1">Inactive</option>
+                </select>
+            </div>
+            <div class="col-auto">
+                <button class="btn btn-primary" type="submit"><span class="fas fa-search"></span></button>
+            </div>
+        </form>
+    </div>
+    <div id="telesalesv2-table">
+        <div class="table-responsive" id="telesalesv2-list">
+            {% include "telesalesv2/partials/telesales_table.html" %}
+        </div>
+
+    </div>
+
+    <div class="pt-3">
+        <nav aria-label="Page navigation">
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+                    </li>
+                {% endif %}
+
+                {% if page_obj.number > 3 %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page=1">1</a>
+                    </li>
+                    {% if page_obj.number > 4 %}
+                        <li class="page-item disabled"><span class="page-link">...</span></li>
+                    {% endif %}
+                {% endif %}
+
+                {% for num in page_obj.paginator.page_range %}
+                    {% if num >= page_obj.number|add:"-2" and num <= page_obj.number|add:"2" %} <li
+                        class="page-item {% if page_obj.number == num %}active{% endif %}">
+                        <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+                    </li>
+                    {% endif %}
+                {% endfor %}
+
+                {% if page_obj.number < page_obj.paginator.num_pages|add:"-2" %} <li class="page-item disabled">
+                    <span class="page-link">...</span></li>
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">
+                            {{ page_obj.paginator.num_pages }}
+                        </a>
+                    </li>
+                {% endif %}
+
+                {% if page_obj.has_next %}
+                    <li class="page-item">
+                        <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+                    </li>
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+</div>
+
+<script>
+    flatpickr("#datepicker-from", {
+        disableMobile: true,
+        dateFormat: "d/m/Y"
+    });
+    flatpickr("#datepicker-to", {
+        disableMobile: true,
+        dateFormat: "d/m/Y"
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        flatpickr("#datepicker-from", { disableMobile: true, dateFormat: "d/m/Y" });
+        flatpickr("#datepicker-to", { disableMobile: true, dateFormat: "d/m/Y" });
+    });
+
+</script>

@@ -3,7 +3,7 @@ import django_filters
 from .models import Activities
 
 
-class ActivityFilter(django_filters.FilterSet):
+class ActivitiesFilter(django_filters.FilterSet):
     contract_number = django_filters.CharFilter(lookup_expr="icontains")
     action_code = django_filters.CharFilter(lookup_expr="icontains")
     contacted_person = django_filters.CharFilter(lookup_expr="icontains")

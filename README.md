@@ -14,19 +14,23 @@ Ensure that you have installed the following software on your machine:
 Follow these steps to set up and run the project:
 
 ### 1. Build and Run the Containers
+
 Use Docker Compose to build and run the containers:
 
 ```sh
 docker-compose up --build
 ```
+
 This command will build the Docker images and start the containers defined in the `docker-compose.yml` file.
 
 ### 2. Access the Services
+
 Once the containers are up and running, you can access the services:
 
-- Django: http://localhost:8000
+-   Django: http://localhost:8000
 
 ### 3. Stop the Containers
+
 To stop the running containers, use the following command:
 
 ```sh
@@ -34,9 +38,11 @@ docker-compose stop
 ```
 
 ## Using Django with HTMX and Alpine.js
+
 This project leverages HTMX and Alpine.js to enhance the interactivity and responsiveness of the web application.
 
 ## HTMX
+
 HTMX allows you to perform AJAX requests directly from HTML attributes, making it easier to create dynamic web applications without writing a lot of JavaScript. For example, you can use `hx-get` to load content from the server:
 
 ```sh
@@ -45,6 +51,7 @@ HTMX allows you to perform AJAX requests directly from HTML attributes, making i
 ```
 
 ## Alpine.js
+
 Alpine.js provides a lightweight framework for adding interactivity to your HTML. It is similar to Vue.js but much smaller and simpler. You can use Alpine.js to handle client-side behavior:
 
 ```sh
@@ -53,6 +60,22 @@ Alpine.js provides a lightweight framework for adding interactivity to your HTML
     <div x-show="open">This is a toggleable content.</div>
 </div>
 ```
+
+## Coding Conventions
+
+This project follows the snake_case style for naming variables and functions. This means that all variable and function names should be written in lowercase letters, with words separated by underscores. For example:
+
+```sh
+# Good
+def my_function():
+    my_variable = 10
+
+# Bad
+def myFunction():
+    myVariable = 10
+```
+
+By adhering to this convention, we ensure consistency and readability throughout the codebase.
 
 ## Installing Pre-commit Hooks
 
@@ -63,10 +86,17 @@ To maintain code quality and consistency, we use pre-commit hooks. Follow these 
 ```sh
 pip install pre-commit
 ```
+
 2. Install the pre-commit hooks:
+
 ```sh
 pre-commit install
 ```
+
+3. Notes
+You may get errors with window.
+Press Windows + R, type sysdm.cpl, select the "Advanced" tab, and then select "Environment Variables".
+In "System variables", select "New", set the name to PYTHONUTF8, and the value to 1.
 
 ## Deployment
 

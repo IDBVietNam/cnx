@@ -10,14 +10,8 @@
               hx-swap="innerHTML"
         >
             <div class="col-auto">
-                <select class="form-select" id="autoSizingSelect"
-                        name="per_page"
-                        hx-get="{% url 'activities:filter-activities' %}"
-                        hx-trigger="change"
-                        hx-target="#activities-list"
-                        hx-swap="innerHTML"
-                        hx-push-url="true"
-                        @change="updateFiltersAndSubmit()"
+                <select class="form-select" name="per_page"
+
                 >
                     <option value=5 {% if per_page|default:10 == 5 %}selected{% endif %}>5</option>
                     <option value=10 {% if per_page|default:10 == 10 %}selected{% endif %}>10</option>
@@ -50,7 +44,7 @@
     </div>
     <div  x-data="{ currentPage: {{ current_page }}, totalPages: {{ total_pages }}, perPage: {{ per_page }}}">
         <div class="table-responsive" id="activities-list">
-            {% include "home/activities/partials/activities_list.html" %}
+            {% include "home/activities/partials/activities_table.html" %}
         </div>
     </div>
 
@@ -65,20 +59,6 @@
         disableMobile: true,
         dateFormat: "d/m/Y"
     });
-    function updateFiltersAndSubmit() {
-        let perPage = document.getElementById("autoSizingSelect").value;
-        let contractNumber = document.getElementById("contract-number").value;
-        let actionCode = document.getElementById("action-code").value;
-        let contactedPerson = document.getElementById("contacted-person").value;
-        let fromDate = document.getElementById("datepicker-from").value;
-        let toDate = document.getElementById("datepicker-to").value;
-
-        let queryString = `?page={{ current_page }}&per_page={{ per_page }}&contract_number=${contractNumber}&action_code=${actionCode}&contacted_person=${contactedPerson}&from_date=${fromDate}&to_date=${toDate}`;
-        let select = document.getElementById("autoSizingSelect");
-        select.setAttribute("hx-get", "{% url 'activities:filter-activities' %}" + queryString);
-
-        select.dispatchEvent(new Event("change")); // Trigger HTMX update
-    }
 
     document.addEventListener("DOMContentLoaded", function () {
         flatpickr("#datepicker-from", { disableMobile: true, dateFormat: "d/m/Y" });
