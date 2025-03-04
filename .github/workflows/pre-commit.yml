@@ -13,20 +13,19 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Docker BuildX
-        uses: docker/setup-buildx-action@v2
-      
-      - name: Build Docker image
-        run: |
-          docker build -t myapp:latest .
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.12"
 
-      - name: Run pre-commit hooks
+      - name: Install dependencies
         run: |
-          docker run --rm myapp:latest pre-commit run --all-files --show-diff-on-failure || (echo "❌ Pre-commit failed! Run 'pre-commit run --all-files' locally to fix." && exit 1)
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install pre-commit
 
       - name: Run pre-commit hooks
         run: pre-commit run --all-files --show-diff-on-failure || (echo "❌ Pre-commit failed! Run 'pre-commit run --all-files' locally to fix." && exit 1)
 
       - name: Run Django tests
-        run: |
-          docker run --rm myapp:latest python manage.py test
+        run: python manage.py test
